@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 
 import { authReducer as auth } from './auth';
+import { myDonateReducer as myDonate } from './myDonate';
+import { myDonatesReducer as myDonates } from './myDonates';
 import { myRequestReducer as myRequest } from './myRequest';
 import { myRequestsReducer as myRequests } from './myRequests';
 import { persistReducer as persist } from './persist';
@@ -12,6 +14,8 @@ import { volunteerRequestsReducer as volunteerRequests } from './volunteerReques
 
 const rootReducer = combineReducers({
   auth,
+  myDonate,
+  myDonates,
   myRequest,
   myRequests,
   persist,

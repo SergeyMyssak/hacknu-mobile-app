@@ -4,21 +4,21 @@ import FastImage from 'react-native-fast-image';
 import Ripple from 'react-native-material-ripple';
 import { COLORS, FONTS } from '@constants';
 import { ICONS } from '@static';
-import { RequestModuleTypes } from '@types';
+import { DonateModuleTypes, RequestModuleTypes } from '@types';
 import { formatDate, formatRequestStatus, getRequestStatusColor } from '@utils';
 
-const { text } = COLORS;
 const { regular, medium } = FONTS;
 
 interface IProps {
-  data: RequestModuleTypes.IRequest;
+  data: RequestModuleTypes.IRequest | DonateModuleTypes.IDonate;
   mode: 'simple' | 'complex';
   isFirst: boolean;
-  onPress: (data: RequestModuleTypes.IRequest) => void;
+  onPress: (data) => void;
 }
 
 const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
-  const { need, status, createdAt, volunteer } = data;
+  // @ts-ignore
+  const { need, text, status, createdAt, volunteer } = data;
   const { name: statusName } = status;
 
   const onRequestListItemPress = (): void => onPress(data);
@@ -52,7 +52,7 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
     <Ripple style={[styles.container, isFirst && styles.first]} onPress={onRequestListItemPress}>
       <View style={styles.body}>
         <Text style={styles.need} numberOfLines={2}>
-          {need}
+          {need || text}
         </Text>
         {mode === 'complex' && renderAdditionalInfo()}
         <Text style={styles.createdAt}>{formatDate(createdAt)}</Text>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   need: {
-    color: text,
+    color: COLORS.text,
     fontFamily: regular,
     fontSize: 16,
     marginBottom: 16,

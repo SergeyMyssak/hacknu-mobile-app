@@ -8,13 +8,13 @@ export const isUser = (user?: UserModuleTypes.IUser): boolean =>
   user?.role.name === USER_ROLES.User;
 
 export const isRequestPending = (data?: RequestModuleTypes.IRequest): boolean =>
-  data?.status === REQUEST_STATUSES.Pending;
+  data?.status.name === REQUEST_STATUSES.Pending;
 
 export const isRequestInProgress = (data?: RequestModuleTypes.IRequest): boolean =>
-  data?.status === REQUEST_STATUSES.InProgress;
+  data?.status.name === REQUEST_STATUSES.InProgress;
 
 export const isRequestDone = (data?: RequestModuleTypes.IRequest): boolean =>
-  data?.status === REQUEST_STATUSES.Done;
+  data?.status.name === REQUEST_STATUSES.Done;
 
 export const isVolunteerMapApplications = (type: string): boolean =>
   type === VOLUNTEER_MAP_TYPES.applications;

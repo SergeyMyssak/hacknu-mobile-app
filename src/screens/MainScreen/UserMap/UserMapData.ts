@@ -39,8 +39,8 @@ export const generateMap = (data: string): string => `
             });
 
             ${JSON.stringify(JSON.parse(data).features)}.forEach(function(item) {
-                var Requests = item.properties.Requests;
-                var cases = Requests ? Requests.length : 0;
+                var applications = item.properties.applications;
+                var cases = applications ? applications.length : 0;
                 var data = JSON.parse(item.properties.description);
                 var long = data[0];
                 var lat = data[1];
@@ -72,7 +72,7 @@ export const generateMap = (data: string): string => `
                             e.get('target').options.set('iconLayout', placemarkContentLayout);
                         };
                         e.get('target').options.set('iconLayout', placemarkActiveContentLayout);
-                        window.ReactNativeWebView.postMessage(JSON.stringify({ Requests: Requests ? Requests : [], district }));
+                        window.ReactNativeWebView.postMessage(JSON.stringify({ applications: applications ? applications : [], district }));
                     });
 
                 collection.add(placemark);

@@ -1,8 +1,8 @@
 import { RequestModuleTypes } from '@types';
 
 export interface IVolunteerMapState {
-  data?: string;
-  requests?: RequestModuleTypes.IRequest[];
+  geojson?: string;
+  data?: RequestModuleTypes.IRequest[];
   isLoading: boolean;
   error?: boolean;
 }

@@ -2,7 +2,7 @@ import React, { FC, memo, useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicatorFull, Header } from '@components';
+import { Header } from '@components';
 import { COLORS } from '@constants';
 import { fetchMyRequestsRequest } from '@modules/myRequests';
 import { AppState } from '@modules/reducers';
@@ -18,8 +18,10 @@ const MyRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Elem
 
   const { data, isLoading } = useSelector(({ myRequests }: AppState) => myRequests);
 
+  const fetchMyRequests = useCallback(() => dispatch(fetchMyRequestsRequest()), [dispatch]);
+
   useEffect(() => {
-    dispatch(fetchMyRequestsRequest());
+    dispatch(fetchMyRequests());
   }, []);
 
   const onMyRequestInfo = useCallback((item: RequestModuleTypes.IRequest): void => {
@@ -30,12 +32,14 @@ const MyRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Elem
     goBackRN(null);
   }, []);
 
-  const renderContent = (): JSX.Element => {
-    if (!data || isLoading) {
-      return <ActivityIndicatorFull />;
-    }
-    return <MyRequestList data={data} onPress={onMyRequestInfo} />;
-  };
+  const renderContent = (): JSX.Element => (
+    <MyRequestList
+      data={data}
+      isLoading={isLoading}
+      onPress={onMyRequestInfo}
+      fetchMyRequests={fetchMyRequests}
+    />
+  );
 
   return (
     <View style={styles.container}>

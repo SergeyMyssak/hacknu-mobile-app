@@ -19,6 +19,7 @@ interface IProps {
 
 const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
   const { need, status, createdAt, volunteer } = data;
+  const { name: statusName } = status;
 
   const onRequestListItemPress = (): void => onPress(data);
 
@@ -26,8 +27,8 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
     <>
       <View style={styles.detail}>
         <Text style={styles.detailLabel}>Status:</Text>
-        <Text style={[styles.detailValue, { color: getRequestStatusColor(status) }]}>
-          {formatRequestStatus(status)}
+        <Text style={[styles.detailValue, { color: getRequestStatusColor(statusName) }]}>
+          {formatRequestStatus(statusName)}
         </Text>
       </View>
       {volunteer && (

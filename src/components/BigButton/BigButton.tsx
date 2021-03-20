@@ -22,8 +22,12 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
 
   const onRequestListItemPress = (): void => onPress(data);
 
-  const renderVolunteerData = (): JSX.Element | null =>
-    volunteer ? (
+  const renderVolunteerData = (): JSX.Element | null => {
+    if (!volunteer) {
+      return null;
+    }
+
+    return (
       <>
         <Text style={styles.label}>
           Организация:{'  '}
@@ -34,7 +38,8 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
           <Text style={styles.value}>{volunteer.name}</Text>
         </Text>
       </>
-    ) : null;
+    );
+  };
 
   const renderAddInfo = (): JSX.Element => (
     <>
@@ -80,7 +85,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     width: '85%',
-    marginBottom: 8,
   },
   need: {
     color: text,
@@ -98,6 +102,7 @@ const styles = StyleSheet.create({
   },
   createdAt: {
     fontSize: 14,
+    lineHeight: 16,
     fontFamily: regular,
     color: 'rgba(0,0,0,0.6)',
   },

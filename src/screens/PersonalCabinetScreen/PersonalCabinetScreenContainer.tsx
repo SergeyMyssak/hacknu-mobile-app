@@ -25,7 +25,7 @@ const PersonalCabinetScreenContainer: FC<NavigationInjectedProps> = ({
   };
 
   const goBack = useCallback((): void => {
-    goBackRN();
+    goBackRN(null);
   }, []);
 
   const initialValues: IMyDataForm = {

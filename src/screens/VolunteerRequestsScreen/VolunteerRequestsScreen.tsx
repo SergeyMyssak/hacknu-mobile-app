@@ -28,7 +28,7 @@ const VolunteerRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): J
   }, []);
 
   const goBack = useCallback((): void => {
-    goBackRN();
+    goBackRN(null);
   }, []);
 
   const renderContent = (): JSX.Element => {

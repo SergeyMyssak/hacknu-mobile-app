@@ -5,7 +5,6 @@ import { BottomSheet, Button, RequestInfo, RequestUserInfo } from '@components';
 import { AppState } from '@modules/reducers';
 import { acceptRequestRequest } from '@modules/volunteerRequests';
 import { RequestModuleTypes } from '@types';
-import _ from 'lodash';
 
 interface IProps {
   innerRef: any;
@@ -27,43 +26,41 @@ const PlacemarkBottomSheet: FC<IProps> = ({
     ({ volunteerRequests }: AppState) => volunteerRequests,
   );
 
-  if (_.isUndefined(data)) {
-    return null;
-  }
+  const renderContent = (): JSX.Element => {
+    const isMine =
+      userInfo?.id === data?.volunteer?.id ||
+      !!myRequests?.find((item: RequestModuleTypes.IRequest) => item.id === data?.id);
+    const isLoading = acceptLoading.includes(data?.id || '');
 
-  const isMine =
-    userInfo?.id === data?.volunteer?.id ||
-    !!myRequests?.find((item: RequestModuleTypes.IRequest) => item.id === data?.id);
+    const onPress = (): void => {
+      dispatch(acceptRequestRequest(data?.id));
+    };
 
-  const isLoading = acceptLoading.includes(data?.id || '');
-
-  const onPress = (): void => {
-    dispatch(acceptRequestRequest(data?.id));
+    return (
+      <View style={styles.container}>
+        <RequestInfo data={data || {}} />
+        <View style={styles.divider} />
+        <RequestUserInfo data={data?.user || {}} />
+        <Button
+          disabled={isMine || isLoading}
+          loading={isLoading}
+          buttonStyle={styles.btn}
+          onPress={onPress}
+        >
+          {isMine ? 'YOU ACCEPTED REQUEST' : 'ACCEPT REQUEST'}
+        </Button>
+      </View>
+    );
   };
-
-  const renderContent = (): JSX.Element => (
-    <View style={styles.container}>
-      <RequestInfo data={data} />
-      <View style={styles.divider} />
-      <RequestUserInfo data={data.user} />
-      <Button
-        disabled={isMine || isLoading}
-        loading={isLoading}
-        buttonStyle={styles.btn}
-        onPress={onPress}
-      >
-        {isMine ? 'YOU ACCEPTED THE APPLICATION' : 'ACCEPT THE APPLICATION'}
-      </Button>
-    </View>
-  );
 
   return (
     <BottomSheet
       innerRef={innerRef}
       title='INFORMATION'
-      isVisible={true}
+      snapPoint='50%'
+      isVisible={!!data}
       renderContent={renderContent}
-      enabledInnerScrolling={false}
+      enabledInnerScrolling={true}
       onClose={onClose}
       onCloseEnd={onCloseEnd}
     />
@@ -92,7 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   btn: {
-    marginTop: 48,
+    marginTop: 36,
   },
 });
 

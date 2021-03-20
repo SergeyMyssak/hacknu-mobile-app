@@ -56,6 +56,7 @@ module.exports = {
     ],
     'jsx-quotes': ['error', 'prefer-single'],
     'react-hooks/exhaustive-deps': 'warn',
+    'react-native/no-inline-styles': 'off',
     'react/destructuring-assignment': 'off',
     'react/forbid-prop-types': 'warn',
     'react/jsx-filename-extension': 'off',

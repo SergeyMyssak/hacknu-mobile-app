@@ -8,8 +8,8 @@ const usePlacemarkBottomSheet = (webref, isFullHeight?: boolean): any[] => {
   const [data, setData] = useState<RequestModuleTypes.IRequest>();
 
   const onModalOpen = useCallback((item: RequestModuleTypes.IRequest): void => {
-    bottomSheetRef?.current?.snapTo(0);
     setData(item);
+    bottomSheetRef?.current?.snapTo(0);
   }, []);
 
   const onModalClose = useCallback((): void => {

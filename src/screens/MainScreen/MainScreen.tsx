@@ -1,6 +1,5 @@
 import React, { FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Header } from '@components';
 import { AppState } from '@modules/reducers';
 import { NavigationInjectionDrawerProps } from '@types';
 import { isVolunteer } from '@utils';
@@ -15,12 +14,11 @@ const MainScreen: FC<NavigationInjectionDrawerProps> = ({ navigation }): JSX.Ele
     navigation.openDrawer();
   }, []);
 
-  return (
-    <>
-      <Header mode='simple' title='Needs Map' icon='menu' onPress={openDrawer} />
-      {isVolunteer(data) ? <VolunteerMap /> : <UserMap />}
-    </>
-  );
+  if (isVolunteer(data)) {
+    return <VolunteerMap openDrawer={openDrawer} />;
+  }
+
+  return <UserMap navigation={navigation} openDrawer={openDrawer} />;
 };
 
 export default memo(MainScreen);

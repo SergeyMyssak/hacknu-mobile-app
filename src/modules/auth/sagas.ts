@@ -1,4 +1,5 @@
 import { NavigationInjectedProps } from 'react-navigation';
+import { API } from '@boot/http';
 import { getSecureValue, removeSecureValue, setSecureValue } from '@boot/keychain';
 import { mapWatcherTreeToSaga } from '@boot/redux/saga';
 import { ACCESS_TOKEN, REFRESH_TOKEN, resetStackAction } from '@constants';
@@ -19,6 +20,8 @@ function* signIn(action): any {
     const { data }: AxiosResponse<IAuthorizeResponse> = yield Auth.signIn(payload);
     const { tokens, user } = data;
     const { accessToken, refreshToken } = tokens;
+
+    API.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
     yield setSecureValue(ACCESS_TOKEN, accessToken);
     yield setSecureValue(REFRESH_TOKEN, refreshToken);

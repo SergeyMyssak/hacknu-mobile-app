@@ -1,4 +1,4 @@
-import { REQUEST_STATUSES, USER_ROLES } from '@constants';
+import { REQUEST_STATUSES, USER_ROLES, VOLUNTEER_MAP_TYPES } from '@constants';
 import { DonateModuleTypes, RequestModuleTypes, UserModuleTypes } from '@types';
 
 export const isVolunteer = (user?: UserModuleTypes.IUser): boolean =>
@@ -18,3 +18,9 @@ export const isRequestInProgress = (
 export const isRequestDone = (
   data?: RequestModuleTypes.IRequest | DonateModuleTypes.IDonate,
 ): boolean => data?.status.name === REQUEST_STATUSES.Done;
+
+export const isVolunteerMapApplications = (type: string): boolean =>
+  type === VOLUNTEER_MAP_TYPES.applications;
+
+export const isVolunteerMapDonations = (type: string): boolean =>
+  type === VOLUNTEER_MAP_TYPES.donations;

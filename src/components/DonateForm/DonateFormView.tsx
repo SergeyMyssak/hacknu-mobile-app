@@ -83,8 +83,8 @@ const DonateFormView: FC<IProps> = ({
             />
             <TextInput
               title='text'
-              label='What is your problem?'
-              textInputProps={{ value: text, placeholder: 'Mask - 5 pieces' }}
+              label='How can you help?'
+              textInputProps={{ value: text, placeholder: 'Enter text' }}
               customStyles={styles.textInput}
               onChangeText={setFieldValue}
             />

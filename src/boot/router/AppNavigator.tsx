@@ -36,6 +36,11 @@ const MainStack = createStackNavigator(
     },
     PublicRequests: {
       screen: PublicRequestsScreen,
+      navigationOptions: {
+        cardStyle: {
+          backgroundColor: '#FBFBFB',
+        },
+      },
     },
   },
   {

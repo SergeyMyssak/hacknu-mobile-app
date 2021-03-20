@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderBottomColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: 1,
+    backgroundColor: 'white',
   },
   category: {
     color: 'rgba(0,0,0,0.4)',

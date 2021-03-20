@@ -4,7 +4,7 @@ export const generateMap = (data: string): string => `
     <!DOCTYPE html>
     <html lang="ru">
     <head>
-      <title>Map of the needy</title>
+      <title>Needs Map</title>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
       <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=longlat&amp;apikey=${YANDEX_API_KEY}" type="text/javascript"></script>

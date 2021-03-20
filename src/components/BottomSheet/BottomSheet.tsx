@@ -36,7 +36,7 @@ const BottomSheet: FC<IProps> = ({
   onCloseEnd,
 }): JSX.Element => {
   const [snapPoint, setSnapPoint] = useState(defaultSnapPoint || 0);
-  const snapPoints = defaultSnapPoint ? ['100%', snapPoint, 0] : [snapPoint, 0];
+  const snapPoints = defaultSnapPoint ? ['95%', snapPoint, 0] : [snapPoint, 0];
   const initialSnapPoint = defaultSnapPoint ? 2 : 1;
 
   const hiddenStyle = defaultSnapPoint

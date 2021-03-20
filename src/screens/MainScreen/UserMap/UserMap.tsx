@@ -9,7 +9,6 @@ import { AppState } from '@modules/reducers';
 import { fetchUserMapRequest } from '@modules/userMap';
 import { generateMap } from '@screens/MainScreen/UserMap/UserMapData';
 import { ICONS } from '@static';
-import { RequestModuleTypes } from '@types';
 
 interface IProps extends NavigationInjectedProps {
   openDrawer: () => void;
@@ -26,30 +25,26 @@ const UserMap: FC<IProps> = ({ navigation, openDrawer }): JSX.Element => {
     dispatch(fetchUserMapRequest());
   }, []);
 
-  const onPressPlacemark = useCallback((item: RequestModuleTypes.IPublicRequest): void => {
-    navigate('PublicRequests', { data: item });
+  const onPressPlacemark = useCallback((item: any): void => {
+    if (item?.applications.length) {
+      navigate('PublicRequests', { data: item });
+    }
   }, []);
 
-  if (!data || isLoading) {
-    return <ActivityIndicatorFull />;
-  }
+  const renderHeader = () => {
+    const renderRightButton = () => {
+      const onPress = () => {
+        dispatch(fetchUserMapRequest());
+      };
 
-  const html = generateMap(data);
-
-  const renderRightButton = () => {
-    const onPress = () => {
-      dispatch(fetchUserMapRequest());
+      return (
+        <Ripple onPress={onPress} rippleContainerBorderRadius={24} style={styles.refreshButton}>
+          <FastImage source={ICONS.refresh} style={styles.icon} />
+        </Ripple>
+      );
     };
 
     return (
-      <Ripple onPress={onPress} rippleContainerBorderRadius={24} style={styles.refreshButton}>
-        <FastImage source={ICONS.refresh} style={styles.icon} />
-      </Ripple>
-    );
-  };
-
-  return (
-    <>
       <Header
         mode='simple'
         title='Needs Map'
@@ -57,6 +52,23 @@ const UserMap: FC<IProps> = ({ navigation, openDrawer }): JSX.Element => {
         onPress={openDrawer}
         rightButton={renderRightButton()}
       />
+    );
+  };
+
+  if (!data || isLoading) {
+    return (
+      <>
+        {renderHeader()}
+        <ActivityIndicatorFull />
+      </>
+    );
+  }
+
+  const html = generateMap(data);
+
+  return (
+    <>
+      {renderHeader()}
       <Map html={html} onPress={onPressPlacemark} />
     </>
   );
@@ -68,7 +80,8 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   icon: {
-    padding: 8,
+    width: 24,
+    height: 24,
   },
 });
 

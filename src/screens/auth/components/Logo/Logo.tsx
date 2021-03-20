@@ -9,7 +9,7 @@ const { light } = FONTS;
 const Logo: FC = (): JSX.Element => (
   <View style={styles.container}>
     <FastImage source={LOGO['32']} style={styles.logo} />
-    <Text style={styles.title}>Помощь волонтеров</Text>
+    <Text style={styles.title}>Volunteer help</Text>
   </View>
 );
 

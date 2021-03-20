@@ -15,7 +15,7 @@ const SettingsScreenContainer: FC<NavigationInjectedProps> = ({ navigation }): J
     dispatch(signOutRequest());
   }, []);
 
-  const data: ISettingListItem[] = [{ title: 'Выйти', onPress: onPressSignOut }];
+  const data: ISettingListItem[] = [{ title: 'Logout', onPress: onPressSignOut }];
 
   const goBack = useCallback((): void => {
     goBackRN(null);

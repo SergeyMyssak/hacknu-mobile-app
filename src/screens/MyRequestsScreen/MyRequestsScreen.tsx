@@ -39,7 +39,7 @@ const MyRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Elem
 
   return (
     <View style={styles.container}>
-      <Header icon='back' title='Мои заявки' onPress={goBack} />
+      <Header icon='back' title='My Requests' onPress={goBack} />
       {renderContent()}
     </View>
   );

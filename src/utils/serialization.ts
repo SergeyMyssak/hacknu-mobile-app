@@ -28,11 +28,11 @@ export const formatDate = (date: string) =>
 export const formatRequestStatus = (status: RequestStatus) => {
   switch (status) {
     case 'Pending':
-      return 'В ожидании';
+      return 'Pending';
     case 'InProgress':
-      return 'Активно';
+      return 'In progress';
     case 'Done':
-      return 'Выполнено';
+      return 'Completed';
   }
 };
 

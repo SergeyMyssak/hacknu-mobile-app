@@ -16,7 +16,7 @@ const AddressMapScreen: FC<NavigationInjectedProps> = ({ navigation }) => {
 
   return (
     <>
-      <Header icon='back' title='Выберите адрес' onPress={goBack} />
+      <Header icon='back' title='Select address' onPress={goBack} />
       <AddressMap coords={{ longitude, latitude }} onPressDone={onPressDone} goBack={goBack} />
     </>
   );

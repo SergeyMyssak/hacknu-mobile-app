@@ -41,7 +41,7 @@ const VolunteerRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): J
 
   return (
     <View style={styles.container}>
-      <Header icon='back' title='Заявки в работе' onPress={goBack} />
+      <Header icon='back' title='Requests in progress' onPress={goBack} />
       {renderContent()}
     </View>
   );

@@ -30,11 +30,11 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
     return (
       <>
         <Text style={styles.label}>
-          Организация:{'  '}
+          Organization:{'  '}
           <Text style={styles.value}>{volunteer.organization.name}</Text>
         </Text>
         <Text style={styles.label}>
-          Волонтер:{'  '}
+          Volunteer:{'  '}
           <Text style={styles.value}>{volunteer.name}</Text>
         </Text>
       </>
@@ -44,7 +44,7 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
   const renderAddInfo = (): JSX.Element => (
     <>
       <Text style={styles.label}>
-        Статус:{'  '}
+        Status:{'  '}
         <Text style={[styles.value, { color: getRequestStatusColor(status) }]}>
           {formatRequestStatus(status)}
         </Text>

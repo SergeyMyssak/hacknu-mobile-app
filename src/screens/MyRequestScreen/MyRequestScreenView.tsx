@@ -37,7 +37,7 @@ const MyRequestsInfoScreenView: FC<IProps> = ({
         <RequestInfo data={data} />
         {status === 'Pending' && (
           <View style={styles.updateBtn}>
-            <Button onPress={onUpdateRequest}>Изменить</Button>
+            <Button onPress={onUpdateRequest}>Change</Button>
           </View>
         )}
         <View style={[styles.status, styles.borderTop]}>
@@ -51,10 +51,10 @@ const MyRequestsInfoScreenView: FC<IProps> = ({
         {status === 'InProgress' && (
           <>
             <Text style={[styles.helpText, styles.borderTop]}>
-              Нажмите на кнопку ниже, если помощь была получена
+              Click on the button below if help has been received
             </Text>
             <Button buttonStyle={styles.confirmBtn} onPress={onCloseRequestPress}>
-              Помощь была получена
+              Help has been received
             </Button>
           </>
         )}

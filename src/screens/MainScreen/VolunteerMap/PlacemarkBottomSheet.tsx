@@ -52,7 +52,7 @@ const PlacemarkBottomSheet: FC<IProps> = ({
         buttonStyle={styles.btn}
         onPress={onPress}
       >
-        {isMine ? 'У ВАС В РАБОТЕ' : 'ВЗЯТЬ В РАБОТУ'}
+        {isMine ? 'YOU ACCEPTED THE APPLICATION' : 'ACCEPT THE APPLICATION'}
       </Button>
     </View>
   );

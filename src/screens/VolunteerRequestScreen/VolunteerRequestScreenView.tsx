@@ -38,7 +38,7 @@ const VolunteerRequestScreenView: FC<IProps> = ({
         <RequestInfo data={data} />
         <>
           <Text style={[styles.helpText, styles.borderTop]}>
-            Нажмите на кнопку ниже, если вы хотите отказаться от заявки
+            Click on the button below if you want to refuse application
           </Text>
           <Button
             isRed={true}
@@ -46,7 +46,7 @@ const VolunteerRequestScreenView: FC<IProps> = ({
             loading={isLoading}
             onPress={onPressRejectRequest}
           >
-            ОТКАЗАТЬСЯ
+            REFUSE
           </Button>
         </>
       </KeyboardAwareScrollView>

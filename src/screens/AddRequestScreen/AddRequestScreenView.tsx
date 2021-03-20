@@ -10,7 +10,7 @@ interface IProps {
 
 const AddRequestScreenView: FC<IProps> = ({ isLoading, onSendRequestPress, goBack }) => (
   <>
-    <Header icon='back' title='Добавить заявку' onPress={goBack} />
+    <Header icon='back' title='Create request' onPress={goBack} />
     <RequestForm isLoading={isLoading} onSubmit={onSendRequestPress} />
   </>
 );

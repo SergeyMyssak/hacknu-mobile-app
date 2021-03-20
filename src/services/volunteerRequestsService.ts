@@ -12,7 +12,7 @@ class VolunteerRequestsService {
   }
 
   public rejectRequest = (id: string): AxiosPromise =>
-    API.delete(`${this.PATH_REQUESTS}/${id}/return`);
+    API.post(`${this.PATH_REQUESTS}/${id}/return`);
 
   public fetchVolunteerRequests = (): AxiosPromise<RequestModuleTypes.IRequest[]> =>
     API.get(`${this.PATH}/me/applications`);

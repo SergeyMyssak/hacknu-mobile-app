@@ -12,7 +12,7 @@ const RequestInfo: FC<IProps> = ({ data }): JSX.Element => {
 
   return (
     <>
-      <RequestInfoItem label='Category:' value={category.name} />
+      <RequestInfoItem label='Category:' value={category?.name} />
       <RequestInfoItem label='Address:' value={address} />
       <RequestInfoItem label='What is your problem?:' value={need} />
       <RequestInfoItem label='Problem description:' value={problem} />

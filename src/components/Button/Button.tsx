@@ -33,11 +33,17 @@ const Button: FunctionComponent<IProps> = ({
   <Ripple
     rippleColor='#FFF'
     rippleContainerBorderRadius={4}
-    disabled={disabled}
+    disabled={loading || disabled}
     style={[
       styles.button,
       {
-        backgroundColor: isRed ? (disabled ? error_04 : error) : disabled ? primary_04 : primary,
+        backgroundColor: isRed
+          ? disabled
+            ? error_04
+            : error
+          : loading || disabled
+          ? primary_04
+          : primary,
       },
       buttonStyle,
     ]}
@@ -67,7 +73,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(222, 52, 47, 0.3)',
   },
   activityIndicator: {
-    marginLeft: 12,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 });
 

@@ -4,16 +4,28 @@ import { IDispatchUpdateMyRequest } from '@modules/myRequests/types';
 import { RequestModuleTypes } from '@types';
 
 interface IProps {
+  clearForm: any;
   data: RequestModuleTypes.IRequest;
   isLoading: boolean;
   onUpdateRequestPress: (data: IDispatchUpdateMyRequest) => void;
   goBack: () => void;
 }
 
-const UpdateRequestScreenView: FC<IProps> = ({ data, isLoading, onUpdateRequestPress, goBack }) => (
+const UpdateRequestScreenView: FC<IProps> = ({
+  clearForm,
+  data,
+  isLoading,
+  onUpdateRequestPress,
+  goBack,
+}) => (
   <>
-    <Header icon='back' title='Update application' onPress={goBack} />
-    <RequestForm isLoading={isLoading} initialValues={data} onSubmit={onUpdateRequestPress} />
+    <Header icon='back' title='Update request' onPress={goBack} />
+    <RequestForm
+      clearForm={clearForm}
+      isLoading={isLoading}
+      initialValues={data}
+      onSubmit={onUpdateRequestPress}
+    />
   </>
 );
 

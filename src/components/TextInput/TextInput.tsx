@@ -101,9 +101,9 @@ const TextInput: FunctionComponent<IProps> = ({
         {renderTextInput()}
         {isButton &&
           (isTypeModal ? (
-            <FastImage source={ICONS.right} style={styles.icon} />
-          ) : (
             <FastImage source={ICONS.down} style={styles.icon} />
+          ) : (
+            <FastImage source={ICONS.right} style={styles.icon} />
           ))}
         {isLoading && (
           <ActivityIndicator

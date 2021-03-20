@@ -1,27 +1,29 @@
+import { API } from '@boot/http';
 import { RequestModuleTypes } from '@types';
-import axios, { AxiosPromise } from 'axios';
+import { AxiosPromise } from 'axios';
 
 class RequestsService {
+  private PATH_User: string;
   private PATH_Request: string;
 
   constructor() {
-    this.PATH_Request = '/requests';
+    this.PATH_User = '/users';
+    this.PATH_Request = '/applications';
   }
 
   public fetchMyRequests = (): AxiosPromise<RequestModuleTypes.IRequest[]> =>
-    axios(`${this.PATH_Request}`);
+    API.get(`${this.PATH_User}/me/applications`);
 
   public sendMyRequest = (
     data: RequestModuleTypes.IDispatchRequestFormData,
-  ): AxiosPromise<RequestModuleTypes.IRequest> => axios.post(`${this.PATH_Request}`, data);
+  ): AxiosPromise<RequestModuleTypes.IRequest> => API.post(`${this.PATH_Request}`, data);
 
   public updateMyRequest = (
     id: string,
     data: RequestModuleTypes.IDispatchRequestFormData,
-  ): AxiosPromise<RequestModuleTypes.IRequest> => axios.post(`${this.PATH_Request}/${id}`, data);
+  ): AxiosPromise<RequestModuleTypes.IRequest> => API.put(`${this.PATH_Request}/${id}`, data);
 
-  public closeMyRequest = (id: string): AxiosPromise =>
-    axios.post(`${this.PATH_Request}/close`, { id });
+  public closeMyRequest = (id: string): AxiosPromise => API.delete(`${this.PATH_Request}/${id}`);
 }
 
 export const Requests = new RequestsService();

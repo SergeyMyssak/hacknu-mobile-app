@@ -1,17 +1,21 @@
+import { API } from '@boot/http';
 import { RequestModuleTypes } from '@types';
-import axios, { AxiosPromise } from 'axios';
+import { AxiosPromise } from 'axios';
 
 class VolunteerRequestsService {
   private PATH: string;
+  private PATH_REQUESTS: string;
 
   constructor() {
     this.PATH = '/volunteers';
+    this.PATH_REQUESTS = '/applications';
   }
 
-  public rejectRequest = (id: string): AxiosPromise => axios.delete(`${this.PATH}/request/${id}`);
+  public rejectRequest = (id: string): AxiosPromise =>
+    API.delete(`${this.PATH_REQUESTS}/${id}/return`);
 
   public fetchVolunteerRequests = (): AxiosPromise<RequestModuleTypes.IRequest[]> =>
-    axios(`${this.PATH}/requests?status=InProgress`);
+    API.get(`${this.PATH}/me/applications`);
 }
 
 export const VolunteerRequests = new VolunteerRequestsService();

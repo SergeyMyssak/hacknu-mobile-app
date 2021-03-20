@@ -1,4 +1,5 @@
 export * from './app';
+export * from './map';
 export * from './mockup';
 export * from './navigation';
 export * from './request';

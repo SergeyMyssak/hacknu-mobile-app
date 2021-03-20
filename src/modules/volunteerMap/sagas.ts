@@ -5,11 +5,14 @@ import { AxiosResponse } from 'axios';
 import { put } from 'redux-saga/effects';
 
 import { fetchVolunteerMapFailure, fetchVolunteerMapSuccess } from './actions';
-import { VolunteerMapActionTypes } from './types';
+import { IDispatchFetchVolunteerMap, VolunteerMapActionTypes } from './types';
 
-function* fetchVolunteerMap(): any {
+function* fetchVolunteerMap(action): any {
+  const { payload }: { payload: IDispatchFetchVolunteerMap } = action;
+  const { type } = payload;
+
   try {
-    const { data }: AxiosResponse<string> = yield VolunteerMap.fetchVolunteerMap();
+    const { data }: AxiosResponse<string> = yield VolunteerMap.fetchVolunteerMap(type);
 
     yield put(fetchVolunteerMapSuccess(data));
   } catch (e) {

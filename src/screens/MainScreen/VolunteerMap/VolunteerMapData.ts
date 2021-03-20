@@ -16,7 +16,7 @@ export const generateMap = ({ geojson, data }): string => `
         function init() {
             var map = new ymaps.Map('map', {
                 center: [71.430411, 51.128207],
-                zoom: 15,
+                zoom: 10,
                 controls: ['geolocationControl', 'zoomControl', 'searchControl', 'typeSelector']
             });
 

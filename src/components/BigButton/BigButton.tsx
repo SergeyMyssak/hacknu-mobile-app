@@ -22,34 +22,24 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
 
   const onRequestListItemPress = (): void => onPress(data);
 
-  const renderVolunteerData = (): JSX.Element | null => {
-    if (!volunteer) {
-      return null;
-    }
-
-    return (
-      <>
-        <Text style={styles.label}>
-          Organization:{'  '}
-          <Text style={styles.value}>{volunteer.organization.name}</Text>
-        </Text>
-        <Text style={styles.label}>
-          Volunteer:{'  '}
-          <Text style={styles.value}>{volunteer.name}</Text>
-        </Text>
-      </>
-    );
-  };
-
-  const renderAddInfo = (): JSX.Element => (
+  const renderAdditionalInfo = (): JSX.Element => (
     <>
-      <Text style={styles.label}>
-        Status:{'  '}
-        <Text style={[styles.value, { color: getRequestStatusColor(status) }]}>
+      <View style={styles.detail}>
+        <Text style={styles.detailLabel}>Status:</Text>
+        <Text style={[styles.detailValue, { color: getRequestStatusColor(status) }]}>
           {formatRequestStatus(status)}
         </Text>
-      </Text>
-      {renderVolunteerData()}
+      </View>
+      <View style={styles.detail}>
+        <Text style={styles.detailLabel}>Organization:</Text>
+        <Text style={styles.detailValue}>{volunteer?.organization.name}</Text>
+      </View>
+      <View style={styles.detail}>
+        <Text style={styles.detailLabel}>Volunteer:</Text>
+        <Text numberOfLines={1} style={styles.detailValue}>
+          {volunteer?.name}
+        </Text>
+      </View>
     </>
   );
 
@@ -59,7 +49,7 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
         <Text style={styles.need} numberOfLines={2}>
           {need}
         </Text>
-        {mode === 'complex' && renderAddInfo()}
+        {mode === 'complex' && renderAdditionalInfo()}
         <Text style={styles.createdAt}>{formatDate(createdAt)}</Text>
       </View>
       <FastImage source={ICONS.chevronRight} style={styles.icon} />
@@ -82,9 +72,9 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.1)',
   },
   body: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    width: '85%',
   },
   need: {
     color: text,
@@ -92,19 +82,30 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 16,
   },
-  label: {
-    fontSize: 14,
-    fontFamily: regular,
+
+  detail: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 6,
   },
-  value: {
+  detailLabel: {
+    color: 'rgba(0,0,0,0.8)',
+    fontSize: 14,
+    fontFamily: regular,
+    marginRight: 4,
+  },
+  detailValue: {
+    color: 'rgba(0,0,0,0.8)',
+    flex: 1,
+    fontSize: 14,
     fontFamily: medium,
   },
   createdAt: {
-    fontSize: 14,
-    lineHeight: 16,
-    fontFamily: regular,
     color: 'rgba(0,0,0,0.6)',
+    fontSize: 14,
+    fontFamily: regular,
   },
   icon: {
     height: 24,

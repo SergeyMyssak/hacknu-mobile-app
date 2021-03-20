@@ -47,7 +47,7 @@ const MainStack = createStackNavigator(
   },
 );
 
-const AccountStack = createStackNavigator(
+const PersonalCabinetStack = createStackNavigator(
   {
     PersonalCabinet: {
       screen: PersonalCabinetScreen,
@@ -162,8 +162,8 @@ const AuthStack = createStackNavigator(
 
 const AppNavigator = createDrawerNavigator(
   {
-    AccountStack: {
-      screen: AccountStack,
+    PersonalCabinetStack: {
+      screen: PersonalCabinetStack,
       navigationOptions: getNavigationOptions('Personal Cabinet', 'account'),
     },
     MyRequestsStack: {

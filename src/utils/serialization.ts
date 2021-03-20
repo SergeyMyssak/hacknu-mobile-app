@@ -32,7 +32,7 @@ export const formatRequestStatus = (status: RequestStatus) => {
     case 'InProgress':
       return 'In progress';
     case 'Done':
-      return 'Completed';
+      return 'Done';
   }
 };
 

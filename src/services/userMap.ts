@@ -1,15 +1,15 @@
+import { API } from '@boot/http';
 import { IFetchUserMapResponse } from '@modules/userMap/types';
-import axios, { AxiosPromise } from 'axios';
+import { AxiosPromise } from 'axios';
 
 class UserMapService {
   private PATH: string;
 
   public constructor() {
-    this.PATH = '/requests';
+    this.PATH = '/geojsons';
   }
 
-  public fetchUserMap = (): AxiosPromise<IFetchUserMapResponse> =>
-    axios(`${this.PATH}/public-geojson`);
+  public fetchUserMap = (): AxiosPromise<IFetchUserMapResponse> => API.get(`${this.PATH}/public`);
 }
 
 export const UserMap = new UserMapService();

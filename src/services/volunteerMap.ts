@@ -1,21 +1,22 @@
+import { API } from '@boot/http';
 import { IFetchVolunteerMapResponse } from '@modules/volunteerMap/types';
 import { RequestModuleTypes } from '@types';
-import axios, { AxiosPromise } from 'axios';
+import { AxiosPromise } from 'axios';
 
 class VolunteerMapService {
   private PATH: string;
-  private PATH_VOLUNTEERS: string;
+  private PATH_GEOJSONS: string;
 
   public constructor() {
-    this.PATH = '/requests';
-    this.PATH_VOLUNTEERS = '/volunteers';
+    this.PATH = '/applications';
+    this.PATH_GEOJSONS = '/geojsons';
   }
 
   public fetchVolunteerMap = (): AxiosPromise<IFetchVolunteerMapResponse> =>
-    axios(`${this.PATH}/volunteer-geojson`);
+    API.get(`${this.PATH_GEOJSONS}/protected`, { params: { type: 'applications' } });
 
   public acceptRequest = (id): AxiosPromise<RequestModuleTypes.IRequest> =>
-    axios.post(`${this.PATH_VOLUNTEERS}/request`, { id });
+    API.post(`${this.PATH}/${id}/take`);
 }
 
 export const VolunteerMap = new VolunteerMapService();

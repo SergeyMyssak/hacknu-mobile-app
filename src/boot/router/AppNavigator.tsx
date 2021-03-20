@@ -5,16 +5,20 @@ import { createStackNavigator, TransitionPresets } from 'react-navigation-stack'
 import { getNavigationOptions } from '@boot/router/helpers';
 import { FONTS } from '@constants';
 import {
+  AddDonateScreen,
   AddRequestScreen,
   AddressMapScreen,
   EnterNameScreen,
   MainScreen,
+  MyDonateScreen,
+  MyDonatesScreen,
   MyRequestScreen,
   MyRequestsScreen,
   PersonalCabinetScreen,
   PublicRequestsScreen,
   SettingsScreen,
   SignInScreen,
+  UpdateDonateScreen,
   UpdateRequestScreen,
   VerificationCodeScreen,
   VolunteerRequestScreen,
@@ -94,6 +98,34 @@ const MyRequestsStack = createStackNavigator(
   },
 );
 
+const MyDonatesStack = createStackNavigator(
+  {
+    MyDonates: {
+      screen: MyDonatesScreen,
+    },
+    MyDonate: {
+      screen: MyDonateScreen,
+    },
+    UpdateDonate: {
+      screen: UpdateDonateScreen,
+    },
+    AddressMap: {
+      screen: AddressMapScreen,
+    },
+  },
+  {
+    initialRouteName: 'MyDonates',
+    defaultNavigationOptions: {
+      cardStyle: {
+        backgroundColor: '#FFF',
+      },
+      ...TransitionPresets.SlideFromRightIOS,
+    },
+    headerMode: 'none',
+    mode: 'modal',
+  },
+);
+
 const VolunteerRequestsStack = createStackNavigator(
   {
     VolunteerRequests: {
@@ -127,6 +159,28 @@ const AddRequestStack = createStackNavigator(
   },
   {
     initialRouteName: 'AddRequest',
+    defaultNavigationOptions: {
+      cardStyle: {
+        backgroundColor: '#FBFBFB',
+      },
+      ...TransitionPresets.SlideFromRightIOS,
+    },
+    headerMode: 'none',
+    mode: 'modal',
+  },
+);
+
+const AddDonateStack = createStackNavigator(
+  {
+    AddDonate: {
+      screen: AddDonateScreen,
+    },
+    AddressMap: {
+      screen: AddressMapScreen,
+    },
+  },
+  {
+    initialRouteName: 'AddDonate',
     defaultNavigationOptions: {
       cardStyle: {
         backgroundColor: '#FBFBFB',
@@ -174,7 +228,7 @@ const AppNavigator = createDrawerNavigator(
       navigationOptions: getNavigationOptions('My requests', 'products'),
     },
     MyDonationsStack: {
-      screen: MyRequestsStack,
+      screen: MyDonatesStack,
       navigationOptions: getNavigationOptions('My donations', 'volunteer'),
     },
     VolunteerRequestsStack: {
@@ -185,8 +239,8 @@ const AppNavigator = createDrawerNavigator(
       screen: AddRequestStack,
       navigationOptions: getNavigationOptions('Add request', 'add'),
     },
-    DonateStack: {
-      screen: AddRequestStack,
+    AddDonateStack: {
+      screen: AddDonateStack,
       navigationOptions: getNavigationOptions('Donate', 'add'),
     },
     Settings: {

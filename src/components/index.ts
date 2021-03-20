@@ -5,6 +5,7 @@ import BigButton from './BigButton';
 import BottomSheet from './BottomSheet';
 import Button from './Button';
 import Divider from './Divider';
+import DonateForm from './DonateForm';
 import Header from './Header';
 import Map from './Map';
 import Modal from './Modal';
@@ -28,6 +29,7 @@ export {
   BottomSheet,
   Button,
   Divider,
+  DonateForm,
   Header,
   Map,
   Modal,

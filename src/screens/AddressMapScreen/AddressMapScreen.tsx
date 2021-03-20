@@ -11,7 +11,7 @@ const AddressMapScreen: FC<NavigationInjectedProps> = ({ navigation }) => {
   const onPressDone = getParam('onPressDone');
 
   const goBack = useCallback((): void => {
-    goBackRN(null);
+    goBackRN();
   }, []);
 
   return (

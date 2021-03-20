@@ -1,6 +1,5 @@
 import React, { FC, memo, useCallback } from 'react';
 import { NavigationInjectedProps, withNavigation } from 'react-navigation';
-import { CATEGORIES } from '@constants';
 import { useBottomSheet } from '@hooks';
 import { IDispatchSendMyRequest } from '@modules/myRequest/types';
 import { IDispatchUpdateMyRequest } from '@modules/myRequests/types';
@@ -29,17 +28,6 @@ const RequestFormContainer: FC<IProps> = ({
     handleCategoriesBottomSheetClose,
     handleCategoriesBottomSheetCloseEnd,
   ] = useBottomSheet();
-
-  const initState: RequestModuleTypes.IRequestFormData = initialValues
-    ? initialValues
-    : {
-        address: '',
-        category: CATEGORIES[0],
-        latitude: '',
-        longitude: '',
-        need: '',
-        problem: '',
-      };
 
   const onPressSend = useCallback(
     (data: RequestModuleTypes.IRequestFormData, { resetForm }): void => {
@@ -85,7 +73,7 @@ const RequestFormContainer: FC<IProps> = ({
 
   return (
     <RequestFormView
-      initState={initState}
+      initState={initialValues}
       categoriesBottomSheetRef={categoriesBottomSheetRef}
       isLoading={isLoading}
       isCategoriesBottomSheetVisible={isCategoriesBottomSheetVisible}

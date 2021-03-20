@@ -1,9 +1,17 @@
 import React, { FC, memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Button, Header, RequestInfo, RequestInfoStatus, RequestVolunteerInfo } from '@components';
+import {
+  Button,
+  Divider,
+  Header,
+  RequestInfo,
+  RequestInfoStatus,
+  RequestVolunteerInfo,
+} from '@components';
 import { FONTS } from '@constants';
 import { RequestModuleTypes } from '@types';
+import { isRequestInProgress, isRequestPending } from '@utils';
 
 interface IProps {
   data?: RequestModuleTypes.IRequest;
@@ -34,25 +42,30 @@ const MyRequestsInfoScreenView: FC<IProps> = ({
         style={styles.container}
         contentContainerStyle={styles.contentContainerStyle}
       >
-        <RequestInfo data={data} />
-        {status === 'Pending' && (
-          <View style={styles.updateBtn}>
-            <Button onPress={onUpdateRequest}>Change</Button>
-          </View>
-        )}
-        <View style={[styles.status, styles.borderTop]}>
+        <View style={styles.section}>
           <RequestInfoStatus status={status} />
         </View>
+        <Divider />
         {volunteer && (
-          <View style={[styles.volunteer, styles.borderTop]}>
-            <RequestVolunteerInfo data={volunteer} />
+          <>
+            <View style={styles.volunteer}>
+              <RequestVolunteerInfo data={volunteer} />
+            </View>
+            <Divider />
+          </>
+        )}
+        <View style={styles.infoSection}>
+          <RequestInfo data={data} />
+        </View>
+        {isRequestPending(data) && (
+          <View style={styles.updateBtn}>
+            <Button onPress={onUpdateRequest}>EDIT</Button>
           </View>
         )}
-        {status === 'InProgress' && (
+        {isRequestInProgress(data) && (
           <>
-            <Text style={[styles.helpText, styles.borderTop]}>
-              Click on the button below if help has been received
-            </Text>
+            <Divider />
+            <Text style={styles.helpText}>Click on the button below if help has been received</Text>
             <Button buttonStyle={styles.confirmBtn} onPress={onCloseRequestPress}>
               Help has been received
             </Button>
@@ -69,19 +82,18 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     paddingHorizontal: 16,
-    paddingTop: 24,
-    paddingBottom: 0,
-  },
-  borderTop: {
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(0,0,0,0.1)',
   },
   updateBtn: {
     marginBottom: 24,
   },
-  status: {
+
+  section: {
     paddingVertical: 24,
   },
+  infoSection: {
+    paddingTop: 24,
+  },
+
   volunteer: {
     paddingTop: 24,
   },

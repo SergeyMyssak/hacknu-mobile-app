@@ -16,11 +16,11 @@ const UpdateRequestScreenContainer: FC<NavigationInjectedProps> = ({ navigation 
   const { isUpdateMyRequestLoading } = useSelector(({ myRequests }: AppState) => myRequests);
 
   const onUpdateRequestPress = useCallback((newData): void => {
-    dispatch(updateMyRequestRequest({ id: data.id, ...newData }));
+    dispatch(updateMyRequestRequest({ navigation, id: data.id, ...newData }));
   }, []);
 
   const goBack = useCallback((): void => {
-    goBackRN(null);
+    goBackRN();
   }, []);
 
   return (

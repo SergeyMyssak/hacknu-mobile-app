@@ -9,4 +9,4 @@ export const CATEGORIES: RequestModuleTypes.ICategory[] = [
   { id: 3, name: 'Consultation' },
 ];
 
-export const YANDEX_API_KEY = 'bb6a4e1c-82db-4f2a-bdd5-f3f5c332f9b5';
+export const YANDEX_API_KEY = '90d2169c-2c21-41d4-a80a-9f1120fce659';

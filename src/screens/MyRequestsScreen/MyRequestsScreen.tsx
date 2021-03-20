@@ -23,11 +23,11 @@ const MyRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Elem
   }, []);
 
   const onMyRequestInfo = useCallback((item: RequestModuleTypes.IRequest): void => {
-    navigate('MyRequestInfo', { id: item.id });
+    navigate('MyRequest', { id: item.id });
   }, []);
 
   const goBack = useCallback((): void => {
-    goBackRN();
+    goBackRN(null);
   }, []);
 
   const renderContent = (): JSX.Element => {

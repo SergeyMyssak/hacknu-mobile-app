@@ -27,23 +27,23 @@ const VOLUNTEER: UserModuleTypes.IVolunteer = {
   },
 };
 
-const generateRequest = (): RequestModuleTypes.IRequest => ({
+const generateRequest = ({ status, hasVolunteer }): RequestModuleTypes.IRequest => ({
   id: uuid.v4(),
   address: '1 May 26',
   need: 'Test',
   problem: 'Test',
-  longitude: '123.1212',
-  latitude: '121.221',
+  longitude: '71.430411',
+  latitude: '51.128207',
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
-  status: 'Pending',
+  status,
   user: USER,
   category: CATEGORIES[0],
-  volunteer: VOLUNTEER,
+  volunteer: hasVolunteer ? VOLUNTEER : undefined,
 });
 
 export const REQUESTS: RequestModuleTypes.IRequest[] = [
-  generateRequest(),
-  generateRequest(),
-  generateRequest(),
+  generateRequest({ status: 'Pending', hasVolunteer: false }),
+  generateRequest({ status: 'InProgress', hasVolunteer: true }),
+  generateRequest({ status: 'Done', hasVolunteer: true }),
 ];

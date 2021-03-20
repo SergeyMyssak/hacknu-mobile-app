@@ -7,7 +7,7 @@ export const generateMap = ({ data, requests }): string => `
       <title>Needs Map</title>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-      <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=longlat&amp;apikey=${YANDEX_API_KEY}" type="text/javascript"></script>
+      <script src="https://api-maps.yandex.ru/2.1/?lang=en_US&amp;coordorder=longlat&amp;apikey=${YANDEX_API_KEY}" type="text/javascript"></script>
       <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
       <script>
         var setPlacemarkInitialLayout = undefined;
@@ -15,7 +15,7 @@ export const generateMap = ({ data, requests }): string => `
         ymaps.ready(init);
         function init() {
             var map = new ymaps.Map('map', {
-                center: [76.940947, 52.285577],
+                center: [71.430411, 51.128207],
                 zoom: 15,
                 controls: ['geolocationControl', 'zoomControl', 'searchControl', 'typeSelector']
             });

@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { BottomSheet } from '@components';
 import { CATEGORIES } from '@constants';
@@ -23,12 +23,12 @@ const CategoriesBottomSheet: FC<IProps> = ({
   onClose,
   onCloseEnd,
 }): JSX.Element | null => {
-  const renderContent = (): JSX.Element => {
+  const renderContent = useCallback((): JSX.Element => {
     const renderItem = ({ item }: { item: RequestModuleTypes.ICategory }): JSX.Element => (
       <Category
         data={item}
         selectedCategory={selectedCategory}
-        hideBottomSheet={onCloseEnd}
+        hideBottomSheet={onClose}
         onSelect={onSelect}
       />
     );
@@ -46,7 +46,7 @@ const CategoriesBottomSheet: FC<IProps> = ({
         />
       </View>
     );
-  };
+  }, [onClose, onSelect, selectedCategory]);
 
   return (
     <BottomSheet

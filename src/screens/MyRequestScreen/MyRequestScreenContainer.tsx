@@ -15,7 +15,7 @@ const MyRequestScreenContainer: FC<NavigationInjectedProps> = ({ navigation }): 
   const item = data?.find((req) => req.id === id);
 
   const onUpdateRequest = useCallback((): void => {
-    navigate('UpdateRequest', { data });
+    navigate('UpdateRequest', { data: item });
   }, []);
 
   const onCloseRequestPress = useCallback(() => {

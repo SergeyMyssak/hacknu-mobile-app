@@ -1,3 +1,4 @@
+import { NavigationInjectedProps } from 'react-navigation';
 import { UserModuleTypes } from '@types';
 
 export interface IUserState {
@@ -7,9 +8,10 @@ export interface IUserState {
   updateUserInfoError?: string;
 }
 
-export interface IDispatchUpdateUserInfo {
+export interface IDispatchUpdateUserInfo extends NavigationInjectedProps {
   name: string;
 }
+
 export interface IUpdateUserInfoResponse {
   name: string;
 }

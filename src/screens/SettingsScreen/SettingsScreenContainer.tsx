@@ -12,8 +12,8 @@ const SettingsScreenContainer: FC<NavigationInjectedProps> = ({ navigation }): J
   const dispatch = useDispatch();
 
   const onPressSignOut = useCallback(async (): Promise<void> => {
-    dispatch(signOutRequest());
-  }, []);
+    dispatch(signOutRequest({ navigation }));
+  }, [dispatch, navigation]);
 
   const data: ISettingListItem[] = [{ title: 'Logout', onPress: onPressSignOut }];
 

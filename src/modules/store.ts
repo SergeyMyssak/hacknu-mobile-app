@@ -12,7 +12,7 @@ import rootSaga from './sagas';
 const authPersistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'user'],
 };
 
 const appReducer = (state, action): AppState => {

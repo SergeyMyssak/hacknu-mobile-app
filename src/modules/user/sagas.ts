@@ -1,4 +1,5 @@
 import { mapWatcherTreeToSaga } from '@boot/redux/saga';
+import { resetStackAction } from '@constants';
 import { User } from '@services';
 import { formatError } from '@utils';
 import { AxiosResponse } from 'axios';
@@ -9,11 +10,14 @@ import { IDispatchUpdateUserInfo, IUpdateUserInfoResponse, UserActionTypes } fro
 
 function* updateUserInfo(action): any {
   const { payload }: { payload: IDispatchUpdateUserInfo } = action;
+  const { name, navigation } = payload;
 
   try {
-    const { data }: AxiosResponse<IUpdateUserInfoResponse> = yield User.updateUserInfo(payload);
+    const { data }: AxiosResponse<IUpdateUserInfoResponse> = yield User.updateUserInfo(name);
 
     yield put(updateUserInfoSuccess(data));
+
+    navigation.dispatch(resetStackAction);
   } catch (e) {
     yield put(updateUserInfoFailure(formatError(e)));
   }

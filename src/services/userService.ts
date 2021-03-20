@@ -1,5 +1,5 @@
 import { API } from '@boot/http';
-import { IDispatchUpdateUserInfo, IUpdateUserInfoResponse } from '@modules/user/types';
+import { IUpdateUserInfoResponse } from '@modules/user/types';
 import { AxiosPromise } from 'axios';
 
 class UserService {
@@ -9,8 +9,8 @@ class UserService {
     this.PATH = '/users';
   }
 
-  public updateUserInfo = (data: IDispatchUpdateUserInfo): AxiosPromise<IUpdateUserInfoResponse> =>
-    API.put(`${this.PATH}/info`, data);
+  public updateUserInfo = (name: string): AxiosPromise<IUpdateUserInfoResponse> =>
+    API.put(`${this.PATH}/info`, { name });
 }
 
 export const User = new UserService();

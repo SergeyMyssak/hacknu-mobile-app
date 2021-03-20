@@ -2,6 +2,11 @@ import { RequestStatus } from '@constants';
 import { UserModuleTypes } from '@types';
 
 export namespace RequestModuleTypes {
+  export interface IStatus {
+    id: number;
+    name: RequestStatus;
+  }
+
   export interface IRequest {
     id: string;
     address: string;
@@ -11,7 +16,7 @@ export namespace RequestModuleTypes {
     latitude: string;
     createdAt: string;
     updatedAt: string;
-    status: RequestStatus;
+    status: IStatus;
     user: UserModuleTypes.IUser;
     category: ICategory;
     volunteer?: UserModuleTypes.IVolunteer;

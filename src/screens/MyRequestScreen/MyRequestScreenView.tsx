@@ -43,7 +43,7 @@ const MyRequestsInfoScreenView: FC<IProps> = ({
         contentContainerStyle={styles.contentContainerStyle}
       >
         <View style={styles.section}>
-          <RequestInfoStatus status={status} />
+          <RequestInfoStatus status={status.name} />
         </View>
         <Divider />
         {volunteer && (

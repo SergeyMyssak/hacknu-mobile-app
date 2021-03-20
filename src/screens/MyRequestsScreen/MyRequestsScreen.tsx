@@ -27,7 +27,7 @@ const MyRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Elem
   }, []);
 
   const goBack = useCallback((): void => {
-    goBackRN();
+    goBackRN(null);
   }, []);
 
   const renderContent = (): JSX.Element => {

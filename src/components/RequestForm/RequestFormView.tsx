@@ -2,6 +2,7 @@ import React, { FC, memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Button, TextInput } from '@components';
+import { CATEGORIES } from '@constants';
 import { RequestModuleTypes } from '@types';
 import { Formik } from 'formik';
 import { FormikHelpers } from 'formik/dist/types';
@@ -9,7 +10,7 @@ import { FormikHelpers } from 'formik/dist/types';
 import CategoriesBottomSheet from './CategoriesBottomSheet';
 
 interface IProps {
-  initState: RequestModuleTypes.IRequestFormData;
+  initState?: RequestModuleTypes.IRequestFormData;
   isLoading: boolean;
   categoriesBottomSheetRef: any;
   isCategoriesBottomSheetVisible: boolean;
@@ -39,7 +40,19 @@ const RequestFormView: FC<IProps> = ({
   onPressSend,
   onAddressMap,
 }): JSX.Element => (
-  <Formik initialValues={initState} onSubmit={onPressSend}>
+  <Formik
+    initialValues={
+      initState || {
+        address: '',
+        category: CATEGORIES[0],
+        latitude: '',
+        longitude: '',
+        need: '',
+        problem: '',
+      }
+    }
+    onSubmit={onPressSend}
+  >
     {({ values, setFieldValue, handleSubmit }) => {
       const { address, category, need, problem } = values;
 
@@ -81,7 +94,7 @@ const RequestFormView: FC<IProps> = ({
               onChangeText={setFieldValue}
             />
             <Button disabled={isLoading} loading={isLoading} onPress={handleSubmit}>
-              Send
+              {initState ? 'Update' : 'Send'}
             </Button>
           </KeyboardAwareScrollView>
           <CategoriesBottomSheet

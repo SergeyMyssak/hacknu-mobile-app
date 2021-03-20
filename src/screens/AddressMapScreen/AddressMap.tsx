@@ -24,7 +24,7 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
           <title>Determining the address of a click on a map using reverse geocoding</title>
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-          <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=longlat&amp;apikey=${YANDEX_API_KEY}" type="text/javascript"></script>
+          <script src="https://api-maps.yandex.ru/2.1/?lang=en_US&amp;coordorder=longlat&amp;apikey=${YANDEX_API_KEY}" type="text/javascript"></script>
           <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
           <style type="text/css">
               html, body, #map {
@@ -94,8 +94,8 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
   const js = `
     ymaps.ready(init);
     function init() {
-        var long = ${coords.longitude || 76.940947};
-        var lat = ${coords.latitude || 52.285577};
+        var long = ${coords.longitude || 71.430411};
+        var lat = ${coords.latitude || 51.128207};
 
         var myPlacemark,
             myMap = new ymaps.Map('map', {

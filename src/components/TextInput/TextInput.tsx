@@ -8,11 +8,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { TextInputMask, TextInputMaskProps } from 'react-native-masked-text';
 import Ripple from 'react-native-material-ripple';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { ActivityIndicator } from '@components';
 import { COLORS, FONTS } from '@constants';
+import { ICONS } from '@static';
 
 const { primary, border, text_input } = COLORS;
 const { regular, medium } = FONTS;
@@ -98,14 +99,12 @@ const TextInput: FunctionComponent<IProps> = ({
     return (
       <>
         {renderTextInput()}
-        {isButton && (
-          <Icon
-            name={isTypeModal ? 'caret-down-outline' : 'caret-forward-outline'}
-            size={20}
-            color={text_input}
-            style={styles.icon}
-          />
-        )}
+        {isButton &&
+          (isTypeModal ? (
+            <FastImage source={ICONS.right} style={styles.icon} />
+          ) : (
+            <FastImage source={ICONS.down} style={styles.icon} />
+          ))}
         {isLoading && (
           <ActivityIndicator
             color={primary}
@@ -177,6 +176,8 @@ const styles = StyleSheet.create({
     paddingRight: 50,
   },
   icon: {
+    width: 24,
+    height: 24,
     position: 'absolute',
     right: 16,
     paddingTop: 4,

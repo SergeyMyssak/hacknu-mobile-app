@@ -77,6 +77,9 @@ const MyRequestsStack = createStackNavigator(
     UpdateRequest: {
       screen: UpdateRequestScreen,
     },
+    AddressMap: {
+      screen: AddressMapScreen,
+    },
   },
   {
     initialRouteName: 'MyRequests',

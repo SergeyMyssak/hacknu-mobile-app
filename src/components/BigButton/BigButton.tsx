@@ -30,16 +30,20 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
           {formatRequestStatus(status)}
         </Text>
       </View>
-      <View style={styles.detail}>
-        <Text style={styles.detailLabel}>Organization:</Text>
-        <Text style={styles.detailValue}>{volunteer?.organization.name}</Text>
-      </View>
-      <View style={styles.detail}>
-        <Text style={styles.detailLabel}>Volunteer:</Text>
-        <Text numberOfLines={1} style={styles.detailValue}>
-          {volunteer?.name}
-        </Text>
-      </View>
+      {volunteer && (
+        <>
+          <View style={styles.detail}>
+            <Text style={styles.detailLabel}>Organization:</Text>
+            <Text style={styles.detailValue}>{volunteer?.organization.name}</Text>
+          </View>
+          <View style={styles.detail}>
+            <Text style={styles.detailLabel}>Volunteer:</Text>
+            <Text numberOfLines={1} style={styles.detailValue}>
+              {volunteer?.name}
+            </Text>
+          </View>
+        </>
+      )}
     </>
   );
 

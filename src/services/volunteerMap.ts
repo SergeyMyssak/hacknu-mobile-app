@@ -12,8 +12,8 @@ class VolunteerMapService {
     this.PATH_GEOJSONS = '/geojsons';
   }
 
-  public fetchVolunteerMap = (): AxiosPromise<IFetchVolunteerMapResponse> =>
-    API.get(`${this.PATH_GEOJSONS}/protected`, { params: { type: 'applications' } });
+  public fetchVolunteerMap = (type): AxiosPromise<IFetchVolunteerMapResponse> =>
+    API.get(`${this.PATH_GEOJSONS}/protected`, { params: { type } });
 
   public acceptRequest = (id): AxiosPromise<RequestModuleTypes.IRequest> =>
     API.post(`${this.PATH}/${id}/take`);

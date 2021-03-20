@@ -7,6 +7,8 @@ const ICONS = {
   volunteer: require('@images/icons/volunteer/volunteer.webp'),
   down: require('@images/icons/down/down.webp'),
   right: require('@images/icons/right/right.webp'),
+  swap: require('@images/icons/swap/swap.webp'),
+  refresh: require('@images/icons/refresh/refresh.webp'),
 };
 
 const LOGO = {

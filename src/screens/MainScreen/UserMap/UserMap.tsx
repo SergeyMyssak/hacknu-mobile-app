@@ -1,13 +1,21 @@
 import React, { FC, memo, useCallback, useEffect } from 'react';
-import { NavigationInjectedProps, withNavigation } from 'react-navigation';
+import { StyleSheet } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import Ripple from 'react-native-material-ripple';
+import { NavigationInjectedProps } from 'react-navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicatorFull, Map } from '@components';
+import { ActivityIndicatorFull, Header, Map } from '@components';
 import { AppState } from '@modules/reducers';
 import { fetchUserMapRequest } from '@modules/userMap';
 import { generateMap } from '@screens/MainScreen/UserMap/UserMapData';
+import { ICONS } from '@static';
 import { RequestModuleTypes } from '@types';
 
-const UserMap: FC<NavigationInjectedProps> = ({ navigation }): JSX.Element => {
+interface IProps extends NavigationInjectedProps {
+  openDrawer: () => void;
+}
+
+const UserMap: FC<IProps> = ({ navigation, openDrawer }): JSX.Element => {
   const { navigate } = navigation;
 
   const dispatch = useDispatch();
@@ -28,7 +36,40 @@ const UserMap: FC<NavigationInjectedProps> = ({ navigation }): JSX.Element => {
 
   const html = generateMap(data);
 
-  return <Map html={html} onPress={onPressPlacemark} />;
+  const renderRightButton = () => {
+    const onPress = () => {
+      dispatch(fetchUserMapRequest());
+    };
+
+    return (
+      <Ripple onPress={onPress} rippleContainerBorderRadius={24} style={styles.refreshButton}>
+        <FastImage source={ICONS.refresh} style={styles.icon} />
+      </Ripple>
+    );
+  };
+
+  return (
+    <>
+      <Header
+        mode='simple'
+        title='Needs Map'
+        icon='menu'
+        onPress={openDrawer}
+        rightButton={renderRightButton()}
+      />
+      <Map html={html} onPress={onPressPlacemark} />
+    </>
+  );
 };
 
-export default memo(withNavigation(UserMap));
+const styles = StyleSheet.create({
+  refreshButton: {
+    padding: 8,
+    marginRight: 4,
+  },
+  icon: {
+    padding: 8,
+  },
+});
+
+export default memo(UserMap);

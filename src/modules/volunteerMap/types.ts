@@ -1,3 +1,4 @@
+import { VolunteerMapType } from '@constants';
 import { RequestModuleTypes } from '@types';
 
 export interface IVolunteerMapState {
@@ -12,6 +13,10 @@ export const VolunteerMapActionTypes = {
   FETCH_VOLUNTEER_MAP_SUCCESS: 'FETCH_VOLUNTEER_MAP_SUCCESS',
   FETCH_VOLUNTEER_MAP_FAILURE: 'FETCH_VOLUNTEER_MAP_FAILURE',
 };
+
+export interface IDispatchFetchVolunteerMap {
+  type: VolunteerMapType;
+}
 
 export interface IFetchVolunteerMapResponse {
   geojson: string;

@@ -1,8 +1,5 @@
-import { getUniqueId } from 'react-native-device-info';
-import { getSecureValue, removeSecureValue, setSecureValue } from '@boot/keychain';
-import { ACCESS_TOKEN, AUTH_PROVIDER, REFRESH_TOKEN } from '@constants';
-import { invalidRefreshTokenAction } from '@modules/persist';
-import store from '@modules/store';
+import { getSecureValue, setSecureValue } from '@boot/keychain';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants';
 import NetInfo, { NetInfoState } from '@react-native-community/netinfo';
 import { DEV_BASE_URL } from '@secrets';
 import { Auth } from '@services';
@@ -63,39 +60,17 @@ API.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-const resetApp = async (provider?: string, e?: AxiosError): Promise<void> => {
-  if (provider) {
-    try {
-      await Auth.signOutSocialNetwork(provider);
-    } catch (e1) {
-      console.log('REFRESH TOKEN ACTION ERROR', { e: e1 });
-    }
-  }
-
-  await removeSecureValue(AUTH_PROVIDER);
-  await removeSecureValue(ACCESS_TOKEN);
-  await removeSecureValue(REFRESH_TOKEN);
-
-  await processQueue(e, null);
-  isRefreshing = false;
-
-  store.dispatch(invalidRefreshTokenAction(true));
-};
 
 const refreshTokenAction = async (error: AxiosError): Promise<any> => {
-  const provider = await getSecureValue(AUTH_PROVIDER);
   const prevAccessToken = await getSecureValue(ACCESS_TOKEN);
   const prevRefreshToken = await getSecureValue(REFRESH_TOKEN);
 
   if (!prevAccessToken || !prevRefreshToken) {
-    await resetApp(provider, error);
-
     return Promise.reject(error);
   }
 
   try {
-    const fingerprint = getUniqueId();
-    const { data } = await Auth.refreshToken(prevAccessToken, prevRefreshToken, fingerprint);
+    const { data } = await Auth.refresh(prevRefreshToken);
     const { tokens } = data;
     const { accessToken, refreshToken } = tokens;
 
@@ -107,8 +82,6 @@ const refreshTokenAction = async (error: AxiosError): Promise<any> => {
 
     return requestFailedReq(accessToken, error.config);
   } catch (e) {
-    await resetApp(provider, e);
-
     return Promise.reject(e);
   }
 };

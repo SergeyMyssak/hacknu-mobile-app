@@ -15,7 +15,7 @@ export const volunteerMapReducer = (state = initState, { type, payload }): IVolu
     case VolunteerMapActionTypes.FETCH_VOLUNTEER_MAP_SUCCESS:
       return {
         ...state,
-        data: payload,
+        ...payload,
         isLoading: false,
       };
     case VolunteerMapActionTypes.FETCH_VOLUNTEER_MAP_FAILURE:

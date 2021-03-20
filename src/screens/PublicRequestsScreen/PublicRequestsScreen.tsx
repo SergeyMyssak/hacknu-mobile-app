@@ -8,11 +8,10 @@ import PublicRequest from './PublicRequest';
 
 const PublicRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Element => {
   const { goBack: goBackRN, getParam } = navigation;
-  const title: string = getParam('title');
-  const data: RequestModuleTypes.IRequest[] = getParam('data');
+  const { district, applications } = getParam('data');
 
   const goBack = useCallback((): void => {
-    goBackRN(null);
+    goBackRN();
   }, []);
 
   const renderPublicRequestListItem = ({
@@ -25,8 +24,12 @@ const PublicRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.
 
   return (
     <>
-      <Header icon='back' title={title} onPress={goBack} />
-      <FlatList data={data} keyExtractor={keyExtractor} renderItem={renderPublicRequestListItem} />
+      <Header icon='back' title={district} onPress={goBack} />
+      <FlatList
+        data={applications}
+        keyExtractor={keyExtractor}
+        renderItem={renderPublicRequestListItem}
+      />
     </>
   );
 };

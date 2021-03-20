@@ -1,6 +1,6 @@
 import { YANDEX_API_KEY } from '@constants';
 
-export const generateMap = ({ data, requests }): string => `
+export const generateMap = ({ geojson, data }): string => `
     <!DOCTYPE html>
     <html lang="ru">
     <head>
@@ -22,7 +22,7 @@ export const generateMap = ({ data, requests }): string => `
 
             var objectManager = new ymaps.ObjectManager();
 
-            var geoJson = ${data};
+            var geoJson = ${geojson};
             geoJson.features.forEach(function (obj) {
                 obj.options = {
                     fillOpacity: 0.2,
@@ -35,7 +35,7 @@ export const generateMap = ({ data, requests }): string => `
                 preset: 'islands#yellowIcon'
             });
 
-            ${JSON.stringify(requests)}.forEach(function(item) {
+            ${JSON.stringify(data)}.forEach(function(item) {
                 var long = item.longitude;
                 var lat = item.latitude;
 

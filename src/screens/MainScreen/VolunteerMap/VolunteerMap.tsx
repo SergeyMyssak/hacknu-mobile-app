@@ -21,17 +21,17 @@ const VolunteerMap: FC = (): JSX.Element => {
     onModalCloseEnd,
   ] = usePlacemarkBottomSheet(webref, true);
 
-  const { data, requests, isLoading } = useSelector(({ volunteerMap }: AppState) => volunteerMap);
+  const { geojson, data, isLoading } = useSelector(({ volunteerMap }: AppState) => volunteerMap);
 
   useEffect(() => {
     dispatch(fetchVolunteerMapRequest());
   }, []);
 
-  if (!data || !requests || isLoading) {
+  if (!geojson || !data || isLoading) {
     return <ActivityIndicatorFull />;
   }
 
-  const html = generateMap({ data, requests });
+  const html = generateMap({ geojson, data });
 
   return (
     <>

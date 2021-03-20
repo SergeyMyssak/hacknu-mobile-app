@@ -17,10 +17,10 @@ const RequestVolunteerInfo: FC<IProps> = ({ data }): JSX.Element => {
 
   return (
     <>
-      <RequestInfoItem label={'Организация:'} value={organization.name} />
-      <RequestInfoItem label={'Волонтер:'} value={name} />
+      <RequestInfoItem label={'Organization:'} value={organization.name} />
+      <RequestInfoItem label={'Volunteer:'} value={name} />
       <RequestInfoItem
-        label={'Номер телефона:'}
+        label={'Phone number:'}
         value={phone}
         rel={'button'}
         onPress={onPhoneNumberPress}

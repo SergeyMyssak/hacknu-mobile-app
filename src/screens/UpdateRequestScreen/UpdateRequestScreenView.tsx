@@ -12,7 +12,7 @@ interface IProps {
 
 const UpdateRequestScreenView: FC<IProps> = ({ data, isLoading, onUpdateRequestPress, goBack }) => (
   <>
-    <Header icon='back' title='Обновить заявку' onPress={goBack} />
+    <Header icon='back' title='Update application' onPress={goBack} />
     <RequestForm isLoading={isLoading} initialValues={data} onSubmit={onUpdateRequestPress} />
   </>
 );

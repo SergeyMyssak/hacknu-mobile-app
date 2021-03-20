@@ -21,9 +21,9 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
     <!DOCTYPE html>
     <html lang="ru">
         <head>
-          <title>Определение адреса клика на карте с помощью обратного геокодирования</title>
+          <title>Determining the address of a click on a map using reverse geocoding</title>
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-          
+
           <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;coordorder=longlat&amp;apikey=${YANDEX_API_KEY}" type="text/javascript"></script>
           <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
           <style type="text/css">
@@ -43,7 +43,7 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
                   width: 256px;
                   background: #396AD4;
                   border: 0;
-                    
+
                   cursor: pointer;
                   user-select: none;
                   -moz-user-select: none;
@@ -96,20 +96,20 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
     function init() {
         var long = ${coords.longitude || 76.940947};
         var lat = ${coords.latitude || 52.285577};
-        
+
         var myPlacemark,
             myMap = new ymaps.Map('map', {
                 center: [long, lat],
                 zoom: 15,
                 controls: ['geolocationControl', 'zoomControl', 'searchControl', 'typeSelector']
             });
-            
+
         var data = {
             newAddress: null,
             newLatitude: null,
             newLongitude: null,
         };
-        
+
         var ButtonLayout = ymaps.templateLayoutFactory.createClass([
             '<div class="myButton >',
             '{% if !state.enabled %} myButtonDisable{% endif %}">',
@@ -117,10 +117,10 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
             '{% if data.isLoading %} <div class="loader"></div> {% endif %}',
             '</div>'
         ].join(''));
-            
+
         var button = new ymaps.control.Button({
             data: {
-                content: "Выбрать",
+                content: "Select",
             },
             options: {
                 layout: ButtonLayout,
@@ -140,46 +140,46 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
                 left: 8,
             },
         });
-        
+
         button.disable();
-        
+
         // Определяем адрес по координатам (обратное геокодирование).
         function getAddress(coords) {
-            myPlacemark.properties.set('iconCaption', 'Поиск...');
+            myPlacemark.properties.set('iconCaption', 'Searching...');
             button.disable();
             button.data.set('isLoading', true);
-        
+
             ymaps.geocode(coords).then(function (res) {
                 var firstGeoObject = res.geoObjects.get(0);
                 const addressLine = firstGeoObject.getAddressLine();
-                
+
                 myPlacemark.properties
                     .set({
                         iconCaption: addressLine,
                         balloonContent: addressLine
                     });
-                    
+
                 data.newAddress = addressLine;
                 data.newLongitude = coords[0];
                 data.newLatitude = coords[1];
                 button.data.set('isLoading', false);
-    
+
                 if (addressLine) {
                     button.enable();
                 }
             });
         }
-        
+
         // Создание метки.
         function createPlacemark(coords) {
             return new ymaps.Placemark(coords, {
-                iconCaption: 'Поиск...'
+                iconCaption: 'Searching...'
             }, {
                 preset: 'islands#violetDotIconWithCaption',
                 draggable: true
             });
         }
-        
+
         function highlightResult(coords) {
             if (coords[0]) {
                 if (myPlacemark) {
@@ -191,16 +191,16 @@ const AddressMap: FC<IProps> = ({ coords, onPressDone, goBack }): JSX.Element =>
               getAddress(coords);
             }
         }
-        
+
         myMap.events.add('click', function (e) {
           highlightResult(e.get('coords'));
         });
-        
+
         highlightResult([${
           coords.longitude && coords.latitude ? [coords.longitude, coords.latitude] : undefined
         }]);
     }
-    
+
     true;
   `;
 

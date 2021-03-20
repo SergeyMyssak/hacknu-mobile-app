@@ -33,20 +33,16 @@ const VerificationCodeScreenView: FC<IProps> = ({
   const renderTimer = (): JSX.Element => (
     <View style={styles.timerContainer}>
       {isTimerDone ? (
-        <TextButton onPress={resendSMS}>Переотправить код</TextButton>
+        <TextButton onPress={resendSMS}>Resend code</TextButton>
       ) : (
-        <Timer
-          maxSeconds={TIMER_SECONDS}
-          leftText='Переотправить через: '
-          callback={timerCallback}
-        />
+        <Timer maxSeconds={TIMER_SECONDS} leftText='Resend code after: ' callback={timerCallback} />
       )}
     </View>
   );
 
   return (
     <>
-      <Header icon='back' title='SMS-код' borderBottom={false} onPress={goBack} />
+      <Header icon='back' title='SMS-code' borderBottom={false} onPress={goBack} />
       <KeyboardAwareScrollView
         keyboardShouldPersistTaps='never'
         style={styles.container}
@@ -70,7 +66,7 @@ const VerificationCodeScreenView: FC<IProps> = ({
           }}
           textInputStyle={styles.input}
         />
-        <HelperText style={styles.helpText}>СМС-код отправлен на номер</HelperText>
+        <HelperText style={styles.helpText}>SMS code sent to the number</HelperText>
         <HelperText>{phone}</HelperText>
         {renderTimer()}
         <Button
@@ -78,7 +74,7 @@ const VerificationCodeScreenView: FC<IProps> = ({
           buttonStyle={styles.button}
           onPress={onPressContinue}
         >
-          Продолжить
+          Continue
         </Button>
       </KeyboardAwareScrollView>
     </>

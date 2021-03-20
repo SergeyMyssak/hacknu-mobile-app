@@ -54,34 +54,34 @@ const RequestFormView: FC<IProps> = ({
           >
             <TextInput
               type='modal'
-              label='Категория'
-              textInputProps={{ value: category?.name, placeholder: 'Категория' }}
+              label='Category'
+              textInputProps={{ value: category?.name, placeholder: 'Category' }}
               customStyles={styles.textInput}
               onPress={handleCategoriesBottomSheetOpen}
             />
             <TextInput
               type='button'
-              label='Выберите адрес'
-              textInputProps={{ value: address, placeholder: 'Выберите адрес' }}
+              label='Select address'
+              textInputProps={{ value: address, placeholder: 'Select address' }}
               customStyles={styles.textInput}
               onPress={onPressSelectAddress}
             />
             <TextInput
               title='need'
-              label='Что нужно'
-              textInputProps={{ value: need, placeholder: 'Маска - 5 штук' }}
+              label='What is your problem?'
+              textInputProps={{ value: need, placeholder: 'Mask - 5 pieces' }}
               customStyles={styles.textInput}
               onChangeText={setFieldValue}
             />
             <TextInput
               title='problem'
-              label='Описание проблемы'
-              textInputProps={{ value: problem, placeholder: 'В аптеках нету масок' }}
+              label='Description'
+              textInputProps={{ value: problem, placeholder: 'There are no masks in pharmacies' }}
               customStyles={[styles.textInput, styles.lastTextInput]}
               onChangeText={setFieldValue}
             />
             <Button disabled={isLoading} loading={isLoading} onPress={handleSubmit}>
-              Отправить
+              Send
             </Button>
           </KeyboardAwareScrollView>
           <CategoriesBottomSheet

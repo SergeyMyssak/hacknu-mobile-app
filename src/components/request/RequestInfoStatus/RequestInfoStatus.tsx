@@ -11,7 +11,7 @@ const { regular, medium } = FONTS;
 
 const RequestInfoStatus: FC<IProps> = ({ status }): JSX.Element => (
   <Text style={styles.label}>
-    Статус:{'  '}
+    Status:{'  '}
     <Text style={[styles.value, { color: getRequestStatusColor(status) }]}>
       {formatRequestStatus(status)}
     </Text>

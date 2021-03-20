@@ -17,9 +17,9 @@ const RequestUserInfo: FC<IProps> = ({ data }): JSX.Element => {
 
   return (
     <>
-      <RequestInfoItem label='Имя:' value={name} />
+      <RequestInfoItem label='Name:' value={name} />
       <RequestInfoItem
-        label='Номер телефона:'
+        label='Phone number:'
         value={phone}
         rel='button'
         onPress={onPhoneNumberPress}

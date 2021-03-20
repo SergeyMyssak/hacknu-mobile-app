@@ -21,7 +21,7 @@ const SignInScreenView: FC<IProps> = ({
   goBack,
 }): JSX.Element => (
   <>
-    <Header icon='back' title='Войти' borderBottom={false} onPress={goBack} />
+    <Header icon='back' title='Login' borderBottom={false} onPress={goBack} />
     <KeyboardAwareScrollView
       keyboardShouldPersistTaps='never'
       style={styles.container}
@@ -45,14 +45,14 @@ const SignInScreenView: FC<IProps> = ({
         }}
         textInputStyle={styles.input}
       />
-      <HelperText style={styles.helpText}>Для входа введите свой номер телефона</HelperText>
+      <HelperText style={styles.helpText}>Enter your phone number</HelperText>
       <Button
         loading={false}
         disabled={phone.trim().length !== 18}
         buttonStyle={styles.button}
         onPress={onVerificationCodeScreen}
       >
-        Продолжить
+        Continue
       </Button>
     </KeyboardAwareScrollView>
   </>

@@ -31,20 +31,20 @@ const EnterNameScreenView: FC<IProps> = ({
       <TextInput
         textInputProps={{
           value: name,
-          placeholder: 'Ваше имя',
+          placeholder: 'Your name',
           placeholderTextColor: text_input_placeholder,
           onChangeText: onChangeName,
         }}
         textInputStyle={styles.input}
       />
-      <HelperText style={styles.helpText}>Введите Ваше имя</HelperText>
+      <HelperText style={styles.helpText}>Enter your name</HelperText>
       <Button
         loading={isLoading}
         disabled={isLoading || name.trim().length < 3}
         buttonStyle={styles.button}
         onPress={onPressContinue}
       >
-        Продолжить
+        Continue
       </Button>
     </KeyboardAwareScrollView>
   </>

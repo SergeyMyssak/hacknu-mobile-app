@@ -20,7 +20,7 @@ const PersonalCabinetScreenView: FC<IProps> = ({
   goBack,
 }): JSX.Element => (
   <>
-    <Header icon='back' title='Мои данные' onPress={goBack} />
+    <Header icon='back' title='My Information' onPress={goBack} />
     <Formik initialValues={initialValues} onSubmit={onUpdateUserInfoPress}>
       {({ values, setFieldValue, handleSubmit }) => {
         const { name, phone } = values;
@@ -33,21 +33,21 @@ const PersonalCabinetScreenView: FC<IProps> = ({
           >
             <TextInput
               title='name'
-              label='Имя'
-              textInputProps={{ value: name, placeholder: 'Ваше имя' }}
+              label='Name'
+              textInputProps={{ value: name, placeholder: 'Your name' }}
               customStyles={[styles.textInput]}
               onChangeText={setFieldValue}
             />
             <TextInput
               title='phone'
-              label='Телефон'
+              label='Phone number'
               textInputProps={{ value: phone, placeholder: '+7 (701) 628 05 07' }}
               customStyles={[styles.textInput, styles.lastTextInput]}
               onChangeText={setFieldValue}
               isDisabled={true}
             />
             <Button loading={isLoading} onPress={handleSubmit}>
-              Сохранить
+              Save
             </Button>
           </KeyboardAwareScrollView>
         );

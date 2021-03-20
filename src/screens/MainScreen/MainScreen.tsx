@@ -17,7 +17,7 @@ const MainScreen: FC<NavigationInjectionDrawerProps> = ({ navigation }): JSX.Ele
 
   return (
     <>
-      <Header mode='simple' title='Карта нуждающихся' icon='menu' onPress={openDrawer} />
+      <Header mode='simple' title='Needs Map' icon='menu' onPress={openDrawer} />
       {isVolunteer(data) ? <VolunteerMap /> : <UserMap />}
     </>
   );

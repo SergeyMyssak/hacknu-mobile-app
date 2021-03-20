@@ -15,7 +15,7 @@ const RequestInfo: FC<IProps> = ({ data }): JSX.Element => {
     <>
       <RequestInfoItem label='Category:' value={category?.name} />
       <RequestInfoItem label='Address:' value={address} />
-      <RequestInfoItem label='Text:' value={text} />
+      {text && <RequestInfoItem label='Text:' value={text} />}
       {need && <RequestInfoItem label='What is your problem?:' value={need} />}
       {problem && <RequestInfoItem label='Problem description:' value={problem} />}
     </>

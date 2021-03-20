@@ -1,4 +1,3 @@
-import AccountScreen from './AccountScreen';
 import AddRequestScreen from './AddRequestScreen';
 import AddressMapScreen from './AddressMapScreen';
 import { EnterNameScreen, SignInScreen, VerificationCodeScreen } from './auth';
@@ -13,7 +12,6 @@ import VolunteerRequestScreen from './VolunteerRequestScreen';
 import VolunteerRequestsScreen from './VolunteerRequestsScreen';
 
 export {
-  AccountScreen,
   AddRequestScreen,
   AddressMapScreen,
   EnterNameScreen,

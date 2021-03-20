@@ -1,7 +1,7 @@
 import Snackbar from 'react-native-snackbar';
 import { COLORS, FONTS, RequestStatus } from '@constants';
 import { format, parseISO } from 'date-fns';
-import { ru } from 'date-fns/locale';
+import { enGB } from 'date-fns/locale';
 import _ from 'lodash';
 
 const { regular } = FONTS;
@@ -22,7 +22,8 @@ export const formatError = (error: any, runSnackbar?: boolean): string => {
   return message;
 };
 
-export const formatDate = (date: string) => format(parseISO(date), 'dd MMMM yyyy', { locale: ru });
+export const formatDate = (date: string) =>
+  format(parseISO(date), 'dd MMMM yyyy', { locale: enGB });
 
 export const formatRequestStatus = (status: RequestStatus) => {
   switch (status) {

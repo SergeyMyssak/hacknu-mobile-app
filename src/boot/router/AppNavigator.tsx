@@ -5,7 +5,6 @@ import { createStackNavigator, TransitionPresets } from 'react-navigation-stack'
 import { getNavigationOptions } from '@boot/router/helpers';
 import { FONTS } from '@constants';
 import {
-  AccountScreen,
   AddRequestScreen,
   AddressMapScreen,
   EnterNameScreen,
@@ -50,15 +49,12 @@ const MainStack = createStackNavigator(
 
 const AccountStack = createStackNavigator(
   {
-    Account: {
-      screen: AccountScreen,
-    },
     PersonalCabinet: {
       screen: PersonalCabinetScreen,
     },
   },
   {
-    initialRouteName: 'Account',
+    initialRouteName: 'PersonalCabinet',
     defaultNavigationOptions: {
       cardStyle: {
         backgroundColor: '#FFF',

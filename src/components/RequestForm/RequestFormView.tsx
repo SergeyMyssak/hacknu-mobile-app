@@ -15,6 +15,7 @@ interface IProps {
   categoriesBottomSheetRef: any;
   isCategoriesBottomSheetVisible: boolean;
 
+  clearForm: any;
   handleCategoriesBottomSheetOpen: () => void;
   handleCategoriesBottomSheetClose: () => void;
   handleCategoriesBottomSheetCloseEnd: () => void;
@@ -34,6 +35,7 @@ const RequestFormView: FC<IProps> = ({
   categoriesBottomSheetRef,
   isCategoriesBottomSheetVisible,
 
+  clearForm,
   handleCategoriesBottomSheetOpen,
   handleCategoriesBottomSheetClose,
   handleCategoriesBottomSheetCloseEnd,
@@ -53,8 +55,9 @@ const RequestFormView: FC<IProps> = ({
     }
     onSubmit={onPressSend}
   >
-    {({ values, setFieldValue, handleSubmit }) => {
+    {({ values, setFieldValue, resetForm, handleSubmit }) => {
       const { address, category, need, problem } = values;
+      clearForm.current = resetForm;
 
       const onPressSelectAddress = (): void => onAddressMap(values, setFieldValue);
 

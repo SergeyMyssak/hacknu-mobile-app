@@ -8,12 +8,14 @@ import { RequestModuleTypes } from '@types';
 import RequestFormView from './RequestFormView';
 
 interface IProps extends NavigationInjectedProps {
+  clearForm: any;
   initialValues?: RequestModuleTypes.IRequestFormData;
   isLoading: boolean;
   onSubmit: (data: IDispatchSendMyRequest | IDispatchUpdateMyRequest | any) => void;
 }
 
 const RequestFormContainer: FC<IProps> = ({
+  clearForm,
   initialValues,
   isLoading,
   navigation,
@@ -77,6 +79,7 @@ const RequestFormContainer: FC<IProps> = ({
       categoriesBottomSheetRef={categoriesBottomSheetRef}
       isLoading={isLoading}
       isCategoriesBottomSheetVisible={isCategoriesBottomSheetVisible}
+      clearForm={clearForm}
       handleCategoriesBottomSheetOpen={handleCategoriesBottomSheetOpen}
       handleCategoriesBottomSheetClose={handleCategoriesBottomSheetClose}
       handleCategoriesBottomSheetCloseEnd={handleCategoriesBottomSheetCloseEnd}

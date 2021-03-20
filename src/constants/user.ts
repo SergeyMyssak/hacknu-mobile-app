@@ -1,11 +1,11 @@
-export type UserRoleType = 'user' | 'volunteer';
+export type UserRoleType = 'User' | 'Volunteer';
 
 interface IUserRoles {
-  User: 'user';
-  Volunteer: 'volunteer';
+  User: 'User';
+  Volunteer: 'Volunteer';
 }
 
 export const USER_ROLES: IUserRoles = {
-  User: 'user',
-  Volunteer: 'volunteer',
+  User: 'User',
+  Volunteer: 'Volunteer',
 };

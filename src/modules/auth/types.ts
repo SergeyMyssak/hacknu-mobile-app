@@ -1,3 +1,4 @@
+import { NavigationInjectedProps } from 'react-navigation';
 import { UserModuleTypes } from '@types';
 
 export interface IAuthState {
@@ -10,7 +11,7 @@ export interface IAuthState {
   signOutError?: string;
 }
 
-export interface IDispatchAuthorize {
+export interface IDispatchAuthorize extends NavigationInjectedProps {
   phone: string;
   hashString: string;
 }

@@ -1,11 +1,16 @@
 import { UserRoleType } from '@constants';
 
 export namespace UserModuleTypes {
+  export interface IRole {
+    id: number;
+    name: UserRoleType;
+  }
+
   export interface IUser {
     id: string;
     phone: string;
     name: string;
-    role: UserRoleType;
+    role: IRole;
     createdAt: string;
     updatedAt: string;
   }
@@ -14,7 +19,7 @@ export namespace UserModuleTypes {
     id: string;
     phone: string;
     name: string;
-    role: UserRoleType;
+    role: IRole;
     createdAt: string;
     updatedAt: string;
     organization: IVolunteerOrganization;

@@ -22,8 +22,8 @@ const EnterNameScreenContainer: FC<NavigationInjectedProps> = ({ navigation }): 
   }, [data]);
 
   const onPressContinue = useCallback(() => {
-    dispatch(updateUserInfoRequest({ name }));
-  }, [name]);
+    dispatch(updateUserInfoRequest({ name, navigation }));
+  }, [name, navigation]);
 
   return (
     <EnterNameScreenView

@@ -7,7 +7,10 @@ const USER: UserModuleTypes.IUser = {
   id: uuid.v4(),
   phone: '+7 777 777 7777',
   name: 'USER NAME',
-  role: 'user',
+  role: {
+    id: 1,
+    name: 'User',
+  },
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
 };
@@ -16,7 +19,10 @@ const VOLUNTEER: UserModuleTypes.IVolunteer = {
   id: uuid.v4(),
   phone: '+7 777 777 7777',
   name: 'Константинов Константин Констанинопольский',
-  role: 'volunteer',
+  role: {
+    id: 2,
+    name: 'Volunteer',
+  },
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
   organization: {

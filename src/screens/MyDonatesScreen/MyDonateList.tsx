@@ -7,10 +7,10 @@ interface IProps {
   data?: DonateModuleTypes.IDonate[];
   isLoading: boolean;
   onPress: (data: DonateModuleTypes.IDonate) => void;
-  fetchMyRequests: () => void;
+  fetchMyDonates: () => void;
 }
 
-const MyDonateList: FC<IProps> = ({ data, isLoading, onPress, fetchMyRequests }): JSX.Element => {
+const MyDonateList: FC<IProps> = ({ data, isLoading, onPress, fetchMyDonates }): JSX.Element => {
   const renderDonate = ({
     item,
     index,
@@ -27,7 +27,7 @@ const MyDonateList: FC<IProps> = ({ data, isLoading, onPress, fetchMyRequests })
       keyExtractor={keyExtractor}
       renderItem={renderDonate}
       contentContainerStyle={styles.contentContainerStyle}
-      refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchMyRequests} />}
+      refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchMyDonates} />}
     />
   );
 };

@@ -51,7 +51,8 @@ function* updateMyRequest(action): any {
 
 function* closeMyRequest(action): any {
   const { payload }: { payload: IDispatchCloseMyRequest } = action;
-  const { id } = payload;
+  const { navigation, id } = payload;
+  const { goBack } = navigation;
 
   try {
     yield Requests.closeMyRequest(id);
@@ -62,6 +63,7 @@ function* closeMyRequest(action): any {
     const updatedRequests = requests.filter((item) => item.id !== id);
 
     yield put(closeMyRequestSuccess(updatedRequests));
+    goBack();
   } catch (e) {
     yield put(closeMyRequestFailure(formatError(e, true)));
   }

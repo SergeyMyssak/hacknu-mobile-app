@@ -19,7 +19,7 @@ export interface IDispatchUpdateMyDonate
   id: string;
 }
 
-export interface IDispatchCloseMyDonate {
+export interface IDispatchCloseMyDonate extends NavigationInjectedProps {
   id: string;
 }
 

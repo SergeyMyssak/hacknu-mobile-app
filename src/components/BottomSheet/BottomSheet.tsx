@@ -1,5 +1,5 @@
 import React, { FC, memo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONTS } from '@constants';
 import RNBottomSheet from 'reanimated-bottom-sheet';
 
@@ -36,7 +36,9 @@ const BottomSheet: FC<IProps> = ({
   onCloseEnd,
 }): JSX.Element => {
   const [snapPoint, setSnapPoint] = useState(defaultSnapPoint || 0);
-  const snapPoints = defaultSnapPoint ? ['95%', snapPoint, 0] : [snapPoint, 0];
+  const snapPoints = defaultSnapPoint
+    ? [Platform.OS === 'ios' ? '90%' : '95%', snapPoint, 0]
+    : [snapPoint, 0];
   const initialSnapPoint = defaultSnapPoint ? 2 : 1;
 
   const hiddenStyle = defaultSnapPoint

@@ -65,9 +65,11 @@ const MyDonateScreenView: FC<IProps> = ({
         {isRequestInProgress(data) && (
           <>
             <Divider />
-            <Text style={styles.helpText}>Click on the button below if help has been received</Text>
+            <Text style={styles.helpText}>
+              Click on the button below if donation has been given
+            </Text>
             <Button buttonStyle={styles.confirmBtn} onPress={onCloseDonatePress}>
-              Help has been received
+              Donation has been given
             </Button>
           </>
         )}

@@ -51,7 +51,8 @@ function* updateMyDonate(action): any {
 
 function* closeMyDonate(action): any {
   const { payload }: { payload: IDispatchCloseMyDonate } = action;
-  const { id } = payload;
+  const { navigation, id } = payload;
+  const { goBack } = navigation;
 
   try {
     yield Donates.closeMyDonate(id);
@@ -62,6 +63,7 @@ function* closeMyDonate(action): any {
     const updatedDonates = donates.filter((item) => item.id !== id);
 
     yield put(closeMyDonateSuccess(updatedDonates));
+    goBack();
   } catch (e) {
     yield put(closeMyDonateFailure(formatError(e, true)));
   }

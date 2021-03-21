@@ -20,7 +20,7 @@ const MyDonateScreenContainer: FC<NavigationInjectedProps> = ({ navigation }): J
   }, [item]);
 
   const onCloseDonatePress = useCallback(() => {
-    dispatch(closeMyDonateRequest({ id: item?.id }));
+    dispatch(closeMyDonateRequest({ navigation, id: item?.id }));
   }, [dispatch, item?.id]);
 
   const goBack = useCallback((): void => {

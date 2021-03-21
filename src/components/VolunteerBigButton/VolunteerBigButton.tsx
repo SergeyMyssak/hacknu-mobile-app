@@ -11,42 +11,16 @@ const { regular, medium } = FONTS;
 
 interface IProps {
   data: RequestModuleTypes.IRequest | DonateModuleTypes.IDonate;
-  mode: 'simple' | 'complex';
   isFirst: boolean;
   onPress: (data) => void;
 }
 
-const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
+const VolunteerBigButton: FC<IProps> = ({ data, isFirst, onPress }) => {
   // @ts-ignore
-  const { need, text, status, createdAt, volunteer } = data;
+  const { need, text, status, createdAt } = data;
   const { name: statusName } = status;
 
   const onRequestListItemPress = (): void => onPress(data);
-
-  const renderAdditionalInfo = (): JSX.Element => (
-    <>
-      <View style={styles.detail}>
-        <Text style={styles.detailLabel}>Status:</Text>
-        <Text style={[styles.detailValue, { color: getRequestStatusColor(statusName) }]}>
-          {formatRequestStatus(statusName)}
-        </Text>
-      </View>
-      {volunteer && (
-        <>
-          <View style={styles.detail}>
-            <Text style={styles.detailLabel}>Organization:</Text>
-            <Text style={styles.detailValue}>{volunteer?.organization?.name}</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.detailLabel}>Volunteer:</Text>
-            <Text numberOfLines={1} style={styles.detailValue}>
-              {volunteer?.name}
-            </Text>
-          </View>
-        </>
-      )}
-    </>
-  );
 
   return (
     <Ripple style={[styles.container, isFirst && styles.first]} onPress={onRequestListItemPress}>
@@ -54,7 +28,12 @@ const BigButton: FC<IProps> = ({ data, mode, isFirst, onPress }) => {
         <Text style={styles.need} numberOfLines={2}>
           {need || text}
         </Text>
-        {mode === 'complex' && renderAdditionalInfo()}
+        <View style={styles.detail}>
+          <Text style={styles.detailLabel}>Status:</Text>
+          <Text style={[styles.detailValue, { color: getRequestStatusColor(statusName) }]}>
+            {formatRequestStatus(statusName)}
+          </Text>
+        </View>
         <Text style={styles.createdAt}>{formatDate(createdAt)}</Text>
       </View>
       <FastImage source={ICONS.chevronRight} style={styles.icon} />
@@ -118,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(BigButton);
+export default memo(VolunteerBigButton);

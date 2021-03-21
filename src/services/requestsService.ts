@@ -23,7 +23,8 @@ class RequestsService {
     data: RequestModuleTypes.IDispatchRequestFormData,
   ): AxiosPromise<RequestModuleTypes.IRequest> => API.put(`${this.PATH_REQUEST}/${id}`, data);
 
-  public closeMyRequest = (id: string): AxiosPromise => API.delete(`${this.PATH_REQUEST}/${id}`);
+  public closeMyRequest = (id: string): AxiosPromise =>
+    API.post(`${this.PATH_REQUEST}/${id}/finish`);
 }
 
 export const Requests = new RequestsService();

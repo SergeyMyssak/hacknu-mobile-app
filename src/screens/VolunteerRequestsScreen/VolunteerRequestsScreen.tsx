@@ -2,7 +2,7 @@ import React, { FC, memo, useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicatorFull, Header } from '@components';
+import { Header } from '@components';
 import { COLORS } from '@constants';
 import { AppState } from '@modules/reducers';
 import { fetchVolunteerRequestsRequest } from '@modules/volunteerRequests/actions';
@@ -19,8 +19,10 @@ const VolunteerRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): J
 
   const { data, isLoading } = useSelector(({ volunteerRequests }: AppState) => volunteerRequests);
 
+  const fetchRequests = useCallback(() => dispatch(fetchVolunteerRequestsRequest()), [dispatch]);
+
   useEffect(() => {
-    dispatch(fetchVolunteerRequestsRequest());
+    fetchRequests();
   }, []);
 
   const onVolunteerRequest = useCallback((item: RequestModuleTypes.IRequest): void => {
@@ -31,13 +33,14 @@ const VolunteerRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): J
     goBackRN(null);
   }, []);
 
-  const renderContent = (): JSX.Element => {
-    if (!data || isLoading) {
-      return <ActivityIndicatorFull />;
-    }
-
-    return <RequestList data={data} onPress={onVolunteerRequest} />;
-  };
+  const renderContent = (): JSX.Element => (
+    <RequestList
+      data={data}
+      isLoading={isLoading}
+      onPress={onVolunteerRequest}
+      fetchRequests={fetchRequests}
+    />
+  );
 
   return (
     <View style={styles.container}>

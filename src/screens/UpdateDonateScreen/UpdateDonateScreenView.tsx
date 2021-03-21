@@ -19,7 +19,7 @@ const UpdateDonateScreenView: FC<IProps> = ({
   goBack,
 }) => (
   <>
-    <Header icon='back' title='Update request' onPress={goBack} />
+    <Header icon='back' title='Update donate' onPress={goBack} />
     <DonateForm
       clearForm={clearForm}
       isLoading={isLoading}

@@ -20,10 +20,10 @@ const Drawer: FC<IProps> = ({ data }): JSX.Element => {
   const isLogged = useSelector(({ auth }: AppState) => auth.isLogged);
 
   const ITEMS = isVolunteer(userInfo)
-    ? [items[0], items[3], '', items[6]]
+    ? [items[0], items[3], items[4], '', items[7]]
     : isUser(userInfo)
-    ? [items[0], items[1], items[2], '', items[4], items[5], '', items[6]]
-    : [items[7]];
+    ? [items[0], items[1], items[2], '', items[5], items[6], '', items[7]]
+    : [items[8]];
 
   return (
     <ScrollView

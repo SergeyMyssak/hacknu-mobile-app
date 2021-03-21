@@ -21,6 +21,8 @@ import {
   UpdateDonateScreen,
   UpdateRequestScreen,
   VerificationCodeScreen,
+  VolunteerDonateScreen,
+  VolunteerDonatesScreen,
   VolunteerRequestScreen,
   VolunteerRequestsScreen,
 } from '@screens';
@@ -153,6 +155,28 @@ const VolunteerRequestsStack = createStackNavigator(
   },
 );
 
+const VolunteerDonatesStack = createStackNavigator(
+  {
+    VolunteerDonates: {
+      screen: VolunteerDonatesScreen,
+    },
+    VolunteerDonate: {
+      screen: VolunteerDonateScreen,
+    },
+  },
+  {
+    initialRouteName: 'VolunteerDonates',
+    defaultNavigationOptions: {
+      cardStyle: {
+        backgroundColor: '#FFF',
+      },
+      ...TransitionPresets.SlideFromRightIOS,
+    },
+    headerMode: 'none',
+    mode: 'modal',
+  },
+);
+
 const AddRequestStack = createStackNavigator(
   {
     AddRequest: {
@@ -239,6 +263,10 @@ const AppNavigator = createDrawerNavigator(
     VolunteerRequestsStack: {
       screen: VolunteerRequestsStack,
       navigationOptions: getNavigationOptions('Requests', 'products'),
+    },
+    VolunteerDonatesStack: {
+      screen: VolunteerDonatesStack,
+      navigationOptions: getNavigationOptions('Donates', 'products'),
     },
     AddRequestStack: {
       screen: AddRequestStack,

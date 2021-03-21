@@ -7,6 +7,7 @@ import myRequest from './myRequest/sagas';
 import myRequests from './myRequests/sagas';
 import user from './user/sagas';
 import userMap from './userMap/sagas';
+import volunteerDonates from './volunteerDonates/sagas';
 import volunteerMap from './volunteerMap/sagas';
 import volunteerRequests from './volunteerRequests/sagas';
 
@@ -19,6 +20,7 @@ export default function* rootSaga(): any {
     myRequests(),
     user(),
     userMap(),
+    volunteerDonates(),
     volunteerMap(),
     volunteerRequests(),
   ]);

@@ -23,7 +23,7 @@ export const formatError = (error: any, runSnackbar?: boolean): string => {
 };
 
 export const formatDate = (date: string) =>
-  format(parseISO(date), 'dd MMMM yyyy', { locale: enGB });
+  format(parseISO(date), 'dd MMMM yyyy HH:mm', { locale: enGB });
 
 export const formatRequestStatus = (status: RequestStatus) => {
   switch (status) {

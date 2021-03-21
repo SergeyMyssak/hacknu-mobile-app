@@ -22,7 +22,7 @@ const MyDonatesScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Eleme
   const fetchMyDonates = useCallback(() => dispatch(fetchMyDonatesRequest()), [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchMyDonates());
+    fetchMyDonates();
   }, []);
 
   const onMyDonate = useCallback((item: DonateModuleTypes.IDonate): void => {
@@ -38,7 +38,7 @@ const MyDonatesScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Eleme
       data={data}
       isLoading={isLoading}
       onPress={onMyDonate}
-      fetchMyRequests={fetchMyDonates}
+      fetchMyDonates={fetchMyDonates}
     />
   );
 

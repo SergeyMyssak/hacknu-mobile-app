@@ -21,7 +21,7 @@ const MyRequestsScreen: FC<NavigationInjectedProps> = ({ navigation }): JSX.Elem
   const fetchMyRequests = useCallback(() => dispatch(fetchMyRequestsRequest()), [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchMyRequests());
+    fetchMyRequests();
   }, []);
 
   const onMyRequestInfo = useCallback((item: RequestModuleTypes.IRequest): void => {

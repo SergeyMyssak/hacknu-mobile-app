@@ -17,7 +17,7 @@ const RequestUserInfo: FC<IProps> = ({ data }): JSX.Element => {
 
   return (
     <>
-      <RequestInfoItem label='Name:' value={name} />
+      <RequestInfoItem label='Name:' value={name || '-'} />
       <RequestInfoItem
         label='Phone number:'
         value={phone}

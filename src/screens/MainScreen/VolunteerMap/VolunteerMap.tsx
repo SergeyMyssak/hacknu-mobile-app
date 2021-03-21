@@ -19,11 +19,11 @@ interface IProps {
 }
 
 const VolunteerMap: FC<IProps> = ({ openDrawer }): JSX.Element => {
-  const [activeMode, setActiveMode] = useState<VolunteerMapType>(VOLUNTEER_MAP_TYPES.applications);
-
   const dispatch = useDispatch();
 
   const webref = useRef();
+
+  const [activeMode, setActiveMode] = useState<VolunteerMapType>(VOLUNTEER_MAP_TYPES.applications);
 
   const [
     bottomSheetRef,
@@ -63,12 +63,12 @@ const VolunteerMap: FC<IProps> = ({ openDrawer }): JSX.Element => {
     );
   };
 
-  const renderButton = () => (
+  const renderSwapMapBtn = () => (
     <Ripple
       rippleColor='#FFF'
       rippleContainerBorderRadius={4}
       style={[
-        styles.button,
+        styles.swapMapButton,
         isVolunteerMapDonations(activeMode) && { backgroundColor: 'rgba(237, 67, 71, 0.8)' },
       ]}
       onPress={onPress}
@@ -82,7 +82,7 @@ const VolunteerMap: FC<IProps> = ({ openDrawer }): JSX.Element => {
       <>
         {renderHeader()}
         <ActivityIndicatorFull />
-        {renderButton()}
+        {renderSwapMapBtn()}
       </>
     );
   }
@@ -105,17 +105,18 @@ const VolunteerMap: FC<IProps> = ({ openDrawer }): JSX.Element => {
       <Map webref={webref} html={html} onPress={onModalOpen} />
       <PlacemarkBottomSheet
         innerRef={bottomSheetRef}
+        activeMode={activeMode}
         data={bottomSheetData}
         onClose={onModalClose}
         onCloseEnd={onModalCloseEnd}
       />
-      {renderButton()}
+      {renderSwapMapBtn()}
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
+  swapMapButton: {
     position: 'absolute',
     display: 'flex',
     alignItems: 'center',

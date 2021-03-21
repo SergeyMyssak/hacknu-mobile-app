@@ -19,7 +19,7 @@ export interface IDispatchUpdateMyRequest
   id: string;
 }
 
-export interface IDispatchCloseMyRequest {
+export interface IDispatchCloseMyRequest extends NavigationInjectedProps {
   id: string;
 }
 

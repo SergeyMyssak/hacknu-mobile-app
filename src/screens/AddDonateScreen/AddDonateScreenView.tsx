@@ -11,7 +11,7 @@ interface IProps {
 
 const AddDonateScreenView: FC<IProps> = ({ clearForm, isLoading, onSendRequestPress, goBack }) => (
   <>
-    <Header icon='back' title='Add request' onPress={goBack} />
+    <Header icon='back' title='Add donate' onPress={goBack} />
     <DonateForm clearForm={clearForm} isLoading={isLoading} onSubmit={onSendRequestPress} />
   </>
 );

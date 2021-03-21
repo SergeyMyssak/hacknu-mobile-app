@@ -2,7 +2,7 @@ import React, { FC, memo, useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationInjectedProps } from 'react-navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicatorFull, Header } from '@components';
+import { Header } from '@components';
 import { COLORS } from '@constants';
 import { AppState } from '@modules/reducers';
 import { fetchVolunteerDonatesRequest } from '@modules/volunteerDonates/actions';
@@ -19,8 +19,10 @@ const VolunteerDonatesScreen: FC<NavigationInjectedProps> = ({ navigation }): JS
 
   const { data, isLoading } = useSelector(({ volunteerDonates }: AppState) => volunteerDonates);
 
+  const fetchDonates = useCallback(() => dispatch(fetchVolunteerDonatesRequest()), [dispatch]);
+
   useEffect(() => {
-    dispatch(fetchVolunteerDonatesRequest());
+    fetchDonates();
   }, []);
 
   const onVolunteerDonate = useCallback((item: DonateModuleTypes.IDonate): void => {
@@ -31,13 +33,14 @@ const VolunteerDonatesScreen: FC<NavigationInjectedProps> = ({ navigation }): JS
     goBackRN(null);
   }, []);
 
-  const renderContent = (): JSX.Element => {
-    if (!data || isLoading) {
-      return <ActivityIndicatorFull />;
-    }
-
-    return <DonateList data={data} onPress={onVolunteerDonate} />;
-  };
+  const renderContent = (): JSX.Element => (
+    <DonateList
+      data={data}
+      onPress={onVolunteerDonate}
+      isLoading={isLoading}
+      fetchDonates={fetchDonates}
+    />
+  );
 
   return (
     <View style={styles.container}>

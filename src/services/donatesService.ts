@@ -23,7 +23,7 @@ class DonatesService {
     data: DonateModuleTypes.IDispatchDonateFormData,
   ): AxiosPromise<RequestModuleTypes.IRequest> => API.put(`${this.PATH_DONATE}/${id}`, data);
 
-  public closeMyDonate = (id: string): AxiosPromise => API.delete(`${this.PATH_DONATE}/${id}`);
+  public closeMyDonate = (id: string): AxiosPromise => API.post(`${this.PATH_DONATE}/${id}/finish`);
 }
 
 export const Donates = new DonatesService();

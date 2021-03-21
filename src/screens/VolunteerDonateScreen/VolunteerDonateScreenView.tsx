@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Button, Header, RequestInfo, RequestUserInfo } from '@components';
 import { FONTS } from '@constants';
 import { DonateModuleTypes } from '@types';
+import { isRequestInProgress } from '@utils';
 
 const { regular } = FONTS;
 
@@ -36,19 +37,21 @@ const VolunteerDonateScreenView: FC<IProps> = ({
       >
         <RequestUserInfo data={user} />
         <RequestInfo data={data} />
-        <>
-          <Text style={[styles.helpText, styles.borderTop]}>
-            Click on the button below if you want to refuse application
-          </Text>
-          <Button
-            isRed={true}
-            disabled={isLoading}
-            loading={isLoading}
-            onPress={onPressRejectRequest}
-          >
-            REFUSE
-          </Button>
-        </>
+        {isRequestInProgress(data) && (
+          <>
+            <Text style={[styles.helpText, styles.borderTop]}>
+              Click on the button below if you want to refuse application
+            </Text>
+            <Button
+              isRed={true}
+              disabled={isLoading}
+              loading={isLoading}
+              onPress={onPressRejectRequest}
+            >
+              REFUSE
+            </Button>
+          </>
+        )}
       </KeyboardAwareScrollView>
     </>
   );

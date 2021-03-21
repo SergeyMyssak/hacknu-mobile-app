@@ -19,7 +19,7 @@ const MyRequestScreenContainer: FC<NavigationInjectedProps> = ({ navigation }): 
   }, []);
 
   const onCloseRequestPress = useCallback(() => {
-    dispatch(closeMyRequestRequest({ id: item?.id }));
+    dispatch(closeMyRequestRequest({ navigation, id: item?.id }));
   }, [dispatch]);
 
   const goBack = useCallback((): void => {

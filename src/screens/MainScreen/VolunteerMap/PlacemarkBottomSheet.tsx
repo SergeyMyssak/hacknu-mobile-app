@@ -2,12 +2,16 @@ import React, { FC, memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { BottomSheet, Button, RequestInfo, RequestUserInfo } from '@components';
+import { VolunteerMapType } from '@constants';
 import { AppState } from '@modules/reducers';
+import { acceptDonateRequest } from '@modules/volunteerDonates';
 import { acceptRequestRequest } from '@modules/volunteerRequests';
-import { RequestModuleTypes } from '@types';
+import { DonateModuleTypes, RequestModuleTypes } from '@types';
+import { isVolunteerMapApplications, isVolunteerMapDonations } from '@utils';
 
 interface IProps {
   innerRef: any;
+  activeMode: VolunteerMapType;
   data: RequestModuleTypes.IRequest;
   onClose: () => void;
   onCloseEnd: () => void;
@@ -15,6 +19,7 @@ interface IProps {
 
 const PlacemarkBottomSheet: FC<IProps> = ({
   innerRef,
+  activeMode,
   data,
   onClose,
   onCloseEnd,
@@ -22,18 +27,36 @@ const PlacemarkBottomSheet: FC<IProps> = ({
   const dispatch = useDispatch();
 
   const userInfo = useSelector(({ user }: AppState) => user.data);
-  const { data: myRequests, acceptLoading } = useSelector(
+  const { data: myRequests, acceptLoading: acceptLoadingRequests } = useSelector(
     ({ volunteerRequests }: AppState) => volunteerRequests,
   );
 
+  const { data: myDonates, acceptLoading: acceptLoadingDonates } = useSelector(
+    ({ volunteerDonates }: AppState) => volunteerDonates,
+  );
+
   const renderContent = (): JSX.Element => {
-    const isMine =
-      userInfo?.id === data?.volunteer?.id ||
-      !!myRequests?.find((item: RequestModuleTypes.IRequest) => item.id === data?.id);
-    const isLoading = acceptLoading.includes(data?.id || '');
+    let isMine;
+    let isLoading;
+
+    if (isVolunteerMapApplications(activeMode)) {
+      isMine =
+        userInfo?.id === data?.volunteer?.id ||
+        !!myRequests?.find((item: RequestModuleTypes.IRequest) => item.id === data?.id);
+      isLoading = acceptLoadingRequests.includes(data?.id || '');
+    } else {
+      isMine =
+        userInfo?.id === data?.volunteer?.id ||
+        !!myDonates?.find((item: DonateModuleTypes.IDonate) => item.id === data?.id);
+      isLoading = acceptLoadingDonates.includes(data?.id || '');
+    }
 
     const onPress = (): void => {
-      dispatch(acceptRequestRequest(data?.id));
+      if (isVolunteerMapApplications(activeMode)) {
+        dispatch(acceptRequestRequest(data?.id));
+      } else {
+        dispatch(acceptDonateRequest(data?.id));
+      }
     };
 
     return (
@@ -47,7 +70,15 @@ const PlacemarkBottomSheet: FC<IProps> = ({
           buttonStyle={styles.btn}
           onPress={onPress}
         >
-          {isMine ? 'YOU ACCEPTED REQUEST' : 'ACCEPT REQUEST'}
+          {isVolunteerMapApplications(activeMode)
+            ? isMine
+              ? 'YOU ACCEPTED REQUEST'
+              : 'ACCEPT REQUEST'
+            : isVolunteerMapDonations(activeMode)
+            ? isMine
+              ? 'YOU ACCEPTED DONATE'
+              : 'ACCEPT DONATE'
+            : ''}
         </Button>
       </View>
     );

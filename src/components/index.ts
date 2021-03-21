@@ -20,6 +20,7 @@ import {
 import RequestForm from './RequestForm';
 import StatusBar from './StatusBar';
 import TextInput from './TextInput';
+import VolunteerBigButton from './VolunteerBigButton';
 
 export {
   ActivityIndicator,
@@ -42,4 +43,5 @@ export {
   RequestVolunteerInfo,
   StatusBar,
   TextInput,
+  VolunteerBigButton,
 };

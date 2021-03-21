@@ -9,6 +9,7 @@ import { persistReducer as persist } from './persist';
 import { statusBarReducer as statusBar } from './statusBar';
 import { userReducer as user } from './user';
 import { userMapReducer as userMap } from './userMap';
+import { volunteerDonatesReducer as volunteerDonates } from './volunteerDonates';
 import { volunteerMapReducer as volunteerMap } from './volunteerMap';
 import { volunteerRequestsReducer as volunteerRequests } from './volunteerRequests';
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   statusBar,
   user,
   userMap,
+  volunteerDonates,
   volunteerMap,
   volunteerRequests,
 });

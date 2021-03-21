@@ -12,6 +12,8 @@ import PublicRequestsScreen from './PublicRequestsScreen';
 import SettingsScreen from './SettingsScreen';
 import UpdateDonateScreen from './UpdateDonateScreen';
 import UpdateRequestScreen from './UpdateRequestScreen';
+import VolunteerDonateScreen from './VolunteerDonateScreen';
+import VolunteerDonatesScreen from './VolunteerDonatesScreen';
 import VolunteerRequestScreen from './VolunteerRequestScreen';
 import VolunteerRequestsScreen from './VolunteerRequestsScreen';
 
@@ -32,6 +34,8 @@ export {
   UpdateDonateScreen,
   UpdateRequestScreen,
   VerificationCodeScreen,
+  VolunteerDonateScreen,
+  VolunteerDonatesScreen,
   VolunteerRequestScreen,
   VolunteerRequestsScreen,
 };
